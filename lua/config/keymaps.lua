@@ -8,3 +8,5 @@ local nomap = vim.keymap.del
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
+
+-- nomap("n", "<leader>gg")
