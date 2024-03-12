@@ -9,4 +9,6 @@ map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 
+map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+
 -- nomap("n", "<leader>gg")
