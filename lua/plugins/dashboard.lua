@@ -3,7 +3,7 @@ return {
   "nvimdev/dashboard-nvim",
   opts = {
     config = {
-      header = ascii.art.text.neovim.sharp,
+      header = ascii.art.text.neovim.dos_rebel,
     },
   },
 }
