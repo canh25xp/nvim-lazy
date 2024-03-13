@@ -10,6 +10,7 @@ return {
         html = {},
         emmet_ls = {},
         emmet_language_server = {},
+        yamlls = {},
       },
     },
   },
