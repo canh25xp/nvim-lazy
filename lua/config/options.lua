@@ -6,3 +6,4 @@ local opt = vim.opt
 local g = vim.g
 
 opt.cursorlineopt = "number"
+opt.conceallevel = 0
