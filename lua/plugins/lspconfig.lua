@@ -8,6 +8,8 @@ return {
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {},
         html = {},
+        emmet_ls = {},
+        emmet_language_server = {},
       },
     },
   },
