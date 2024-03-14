@@ -6,6 +6,7 @@ local opt = vim.opt
 local g = vim.g
 
 opt.cursorlineopt = "number"
+opt.conceallevel = 0
 
 -- Set shell to PowerShell 7 if on Win32 or Win64
 if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
