@@ -14,11 +14,47 @@ local logo = [[
 logo = string.rep("\n", 8) .. logo .. "\n\n"
 
 return {
-  "nvimdev/dashboard-nvim",
-  opts = {
-    config = {
-      -- header = ascii.art.text.neovim.dos_rebel,
-      header = vim.split(logo, "\n"),
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      close_if_last_window = true,
+      window = {
+        mappings = {
+          ["l"] = "open",
+        },
+      },
+      filesystem = {
+        filtered_items = {
+          hide_dotfiles = true,
+          hide_gitignored = false,
+          hide_hidden = false, -- only works on Windows for hidden files/directories
+        },
+      },
+    },
+  },
+  {
+    "echasnovski/mini.indentscope",
+    opts = {
+      draw = {
+        animation = function()
+          return 0
+        end,
+      },
+    },
+  },
+  {
+    "rcarriga/nvim-notify",
+    opts = {
+      stages = "static",
+    },
+  },
+  {
+    "nvimdev/dashboard-nvim",
+    opts = {
+      config = {
+        -- header = ascii.art.text.neovim.dos_rebel,
+        header = vim.split(logo, "\n"),
+      },
     },
   },
 }
