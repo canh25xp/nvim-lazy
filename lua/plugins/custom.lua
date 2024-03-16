@@ -27,14 +27,16 @@ return {
   },
   {
     "akinsho/toggleterm.nvim",
-    config = function()
-      require("toggleterm").setup({
-        open_mapping = [[<C-\>]],
-        -- add --login so ~/.zprofile is loaded
-        -- https://vi.stackexchange.com/questions/16019/neovim-terminal-not-reading-bash-profile/16021#16021
-        -- shell = "bash --login",
-      })
-    end,
+    opts = {
+      size = 20,
+      open_mapping = [[<c-\>]],
+      hide_numbers = true,
+      shade_terminals = true,
+      start_in_insert = true,
+      insert_mappings = true,
+      persist_size = true,
+      close_on_exit = true,
+    },
     cmd = "ToggleTerm",
     keys = {
       { [[<C-\>]] },
