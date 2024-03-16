@@ -13,6 +13,21 @@ local function toggle_term()
   util.terminal(nil, opts)
 end
 
+local function lazygit()
+  util.terminal({ "lazygit" }, {
+    size = {
+      width = 1,
+      height = 1,
+    },
+    cwd = util.root(),
+    esc_esc = false,
+    ctrl_hjkl = false,
+  })
+end
+
+map("n", "<leader>gg", lazygit, { desc = "Lazygit (root dir)" })
+
+-- Auto translate to <C-/>
 map("n", "<C-_>", toggle_term, { desc = "Terminal (root dir )" })
 
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
@@ -25,4 +40,4 @@ map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 map("n", "<C-b>", "<leader>fe", { desc = "Explorer NeoTree (root dir)", remap = true })
 
--- nomap("n", "<leader>gg")
+nomap("n", "<leader>/")
