@@ -4,6 +4,16 @@
 
 local map = vim.keymap.set
 local nomap = vim.keymap.del
+local util = require("lazyvim.util")
+
+local function toggle_term()
+  local opts = {
+    size = { width = 1, height = 1 },
+  }
+  util.terminal(nil, opts)
+end
+
+map("n", "<C-_>", toggle_term, { desc = "Terminal (root dir )" })
 
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 
