@@ -3,7 +3,7 @@ return {
     "folke/tokyonight.nvim",
     opts = {
       style = "storm",
-      transparent = true,
+      transparent = false,
       terminal_colors = true,
       styles = {
         -- Style to be applied to different syntax groups
@@ -16,12 +16,6 @@ return {
         sidebars = "dark", -- style for sidebars, see below
         floats = "dark", -- style for floating windows
       },
-    },
-  },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "tokyonight",
     },
   },
 }
