@@ -40,4 +40,6 @@ map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 map("n", "<C-b>", "<leader>fe", { desc = "Explorer NeoTree (root dir)", remap = true })
 
-nomap("n", "<leader>/")
+map("n", "<leader>d", "<leader>bd", { desc = "Delete Buffer", remap = true })
+
+-- nomap("n", "<leader>/")
