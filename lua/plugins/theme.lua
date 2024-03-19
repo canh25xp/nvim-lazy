@@ -1,4 +1,5 @@
 return {
+  -- Config tokyonight
   {
     "folke/tokyonight.nvim",
     opts = {
@@ -16,6 +17,13 @@ return {
         sidebars = "dark", -- style for sidebars, see below
         floats = "dark", -- style for floating windows
       },
+    },
+  },
+  -- Load the plugin
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "tokyonight",
     },
   },
 }
