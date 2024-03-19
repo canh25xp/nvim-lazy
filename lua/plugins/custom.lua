@@ -49,7 +49,7 @@ return {
     config = {
       style = "dark",
       pager = false,
-      border = "shadow",
+      border = "none",
     },
     cmd = "Glow",
   },
