@@ -43,22 +43,14 @@ return {
       { "<leader>0", "<Cmd>2ToggleTerm<Cr>", desc = "Terminal #2" },
     },
   },
+  -- Preview and render Markdown directly in the terminal
   {
     "ellisonleao/glow.nvim",
-    config = function()
-      require("glow").setup({
-        style = "dark",
-        pager = false,
-        border = "none",
-      })
-    end,
+    config = {
+      style = "dark",
+      pager = false,
+      border = "shadow",
+    },
     cmd = "Glow",
-  },
-  {
-    "lervag/vimtex",
-    config = function()
-      vim.g.vimtex_mappings_disable = { ["n"] = { "K" } } -- disable `K` as it conflicts with LSP hover
-      vim.g.vimtex_quickfix_method = vim.fn.executable("pplatex") == 1 and "pplatex" or "latexlog"
-    end,
   },
 }
