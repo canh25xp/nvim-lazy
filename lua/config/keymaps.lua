@@ -38,7 +38,7 @@ map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 -- map("n", "<C-b>", "<cmd>colorscheme habamax<cr>", { desc = "" })
 
-map("n", "<C-b>", "<leader>fe", { desc = "Explorer NeoTree (root dir)", remap = true })
+-- map("n", "<C-b>", "<leader>fe", { desc = "Explorer NeoTree (root dir)", remap = true })
 
 map("n", "<leader>d", "<leader>bd", { desc = "Delete Buffer", remap = true })
 
