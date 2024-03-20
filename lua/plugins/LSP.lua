@@ -4,9 +4,14 @@ return {
     ---@class PluginLspOpts
     opts = {
       servers = {
-        -- html = {},
-        -- emmet_ls = {},
-        -- emmet_language_server = {},
+        html = {
+          filetypes = {
+            "html",
+            "templ",
+            "htmldjango",
+          },
+        },
+        emmet_ls = {},
       },
     },
   },
