@@ -46,7 +46,7 @@ return {
   -- Preview and render Markdown directly in the terminal
   {
     "ellisonleao/glow.nvim",
-    config = {
+    opts = {
       style = "dark",
       pager = false,
       border = "none",
