@@ -49,6 +49,11 @@ return {
       render = "wrapped-compact",
     },
   },
+  -- Turn off sticky scroll
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    enabled = false,
+  },
   {
     "folke/noice.nvim",
     opts = {
