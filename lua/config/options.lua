@@ -6,7 +6,7 @@ vim.g.maplocalleader = ","
 
 local opt = vim.opt
 
-opt.relativenumber = false
+opt.relativenumber = true
 opt.cursorlineopt = "number"
 opt.conceallevel = 0
 opt.wildmode = "list:full" -- Command-line completion mode
