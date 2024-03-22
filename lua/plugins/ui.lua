@@ -44,6 +44,15 @@ return {
   },
   {
     "rcarriga/nvim-notify",
+    keys = {
+      {
+        "<leader>ua",
+        function()
+          require("telescope").extensions.notify.notify()
+        end,
+        desc = "Display a log of the history",
+      },
+    },
     opts = {
       stages = "static",
       render = "wrapped-compact",
