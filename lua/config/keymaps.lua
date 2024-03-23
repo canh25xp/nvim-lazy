@@ -29,7 +29,8 @@ map("n", "<leader>gg", lazygit, { desc = "Lazygit (root dir)" })
 
 -- Terminal
 nomap("t", "<esc><esc>")
-map("t", "jk", "<C-\\><C-n>", { desc = "Enter Normal Mode" })
+-- map("t", "jk", "<C-\\><C-n>", { desc = "Enter Normal Mode" })
+map("t", "<C-x>", "<C-\\><C-n>", { desc = "Enter Normal Mode" })
 map("n", "<C-_>", toggle_term, { desc = "Terminal (root dir )" }) -- Auto translate to <C-/>
 
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
