@@ -27,8 +27,10 @@ end
 
 map("n", "<leader>gg", lazygit, { desc = "Lazygit (root dir)" })
 
--- Auto translate to <C-/>
-map("n", "<C-_>", toggle_term, { desc = "Terminal (root dir )" })
+-- Terminal
+nomap("t", "<esc><esc>")
+map("t", "jk", "<C-\\><C-n>", { desc = "Enter Normal Mode" })
+map("n", "<C-_>", toggle_term, { desc = "Terminal (root dir )" }) -- Auto translate to <C-/>
 
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 
@@ -40,8 +42,8 @@ map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 -- map("n", "<C-b>", "<cmd>colorscheme habamax<cr>", { desc = "" })
 
--- map("n", "<C-b>", "<leader>fe", { desc = "Explorer NeoTree (root dir)", remap = true })
+map("n", "<C-n>", "<leader>fe", { desc = "Explorer NeoTree (root dir)", remap = true })
 
--- map("n", "<leader>d", "<leader>bd", { desc = "Delete Buffer", remap = true })
+map("n", "<leader>d", "<leader>bd", { desc = "Delete Buffer", remap = true })
 
 map("n", "<leader>/", "gcc", { desc = "Comment line", remap = true })
