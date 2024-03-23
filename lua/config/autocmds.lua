@@ -11,3 +11,5 @@ api.nvim_create_autocmd({ "TermOpen", "BufEnter" }, {
     end
   end,
 })
+
+api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
