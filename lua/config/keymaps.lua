@@ -44,4 +44,4 @@ map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 -- map("n", "<leader>d", "<leader>bd", { desc = "Delete Buffer", remap = true })
 
--- nomap("n", "<leader>/")
+map("n", "<leader>/", "gcc", { desc = "Comment line", remap = true })
