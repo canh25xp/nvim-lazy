@@ -5,9 +5,10 @@
 local opt = vim.opt
 local g = vim.g
 
-g.maplocalleader = ","
+g.maplocalleader = [[\]]
 g.autoformat = false
 
+opt.timeoutlen = 1000
 opt.relativenumber = true
 opt.cursorlineopt = "number"
 opt.conceallevel = 0
