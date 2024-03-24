@@ -25,6 +25,20 @@ local function lazygit()
   })
 end
 
+local function glow()
+  util.terminal({ "glow" }, {
+    size = {
+      width = 1,
+      height = 1,
+    },
+    cwd = util.root(),
+    esc_esc = false,
+    ctrl_hjkl = false,
+  })
+end
+
+map("n", "<leader>gl", glow, { desc = "Open markdown file"})
+
 map("n", "<leader>gg", lazygit, { desc = "Lazygit (root dir)" })
 
 -- Terminal
