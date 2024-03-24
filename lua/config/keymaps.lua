@@ -62,3 +62,4 @@ map("n", "<C-n>", "<leader>fe", { desc = "Explorer NeoTree (root dir)", remap = 
 map("n", "<leader>d", "<leader>bd", { desc = "Delete Buffer", remap = true })
 
 map("n", "<leader>/", "gcc", { desc = "Comment line", remap = true })
+map("v", "<leader>/", "gc", { desc = "Comment line", remap = true })
