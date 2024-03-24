@@ -47,4 +47,29 @@ require("lazy").setup({
       },
     },
   },
+  ui = {
+    size = {
+      width = 1,
+      height = 1,
+    },
+  },
+  custom_keys = {
+    ["<localleader>l"] = {
+      function(plugin)
+        require("lazy.util").float_term({ "lazygit", "log" }, {
+          cwd = plugin.dir,
+        })
+      end,
+      desc = "Open lazygit log",
+    },
+
+    ["<localleader>t"] = {
+      function(plugin)
+        require("lazy.util").float_term(nil, {
+          cwd = plugin.dir,
+        })
+      end,
+      desc = "Open terminal in plugin dir",
+    },
+  },
 })
