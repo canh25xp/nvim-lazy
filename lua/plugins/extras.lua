@@ -8,7 +8,7 @@ return {
   },
   {
     "mfussenegger/nvim-lint",
-    enabled = false,
+    -- enabled = false,
   },
   {
     "lukas-reineke/headlines.nvim",
