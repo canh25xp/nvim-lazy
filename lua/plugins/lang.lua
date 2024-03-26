@@ -17,6 +17,7 @@ return {
       formatters_by_ft = {
         ["htmldjango"] = { "djlint" },
         ["html"] = { "djlint" },
+        ["tex"] = { "latexindent" },
       },
       formatters = {
         djlint = {
@@ -41,6 +42,7 @@ return {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
+        "latexindent",
         "djlint",
       })
     end,
