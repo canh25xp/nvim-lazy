@@ -13,17 +13,17 @@ local function toggle_term()
   util.terminal(nil, opts)
 end
 
-local function lazygit()
-  util.terminal({ "lazygit" }, {
-    size = {
-      width = 1,
-      height = 1,
-    },
-    cwd = util.root(),
-    esc_esc = false,
-    ctrl_hjkl = false,
-  })
-end
+-- local function lazygit()
+--   util.terminal({ "lazygit" }, {
+--     size = {
+--       width = 1,
+--       height = 1,
+--     },
+--     cwd = util.root(),
+--     esc_esc = false,
+--     ctrl_hjkl = false,
+--   })
+-- end
 
 local function glow()
   util.terminal({ "glow" }, {
@@ -39,7 +39,7 @@ end
 
 map("n", "<leader>gl", glow, { desc = "Open markdown file"})
 
-map("n", "<leader>gg", lazygit, { desc = "Lazygit (root dir)" })
+-- map("n", "<leader>gg", lazygit, { desc = "Lazygit (root dir)" })
 
 -- Terminal
 -- map("t", "jk", "<C-\\><C-n>", { desc = "Enter Normal Mode" })
