@@ -1,4 +1,3 @@
--- local ascii = require("ascii")
 
 local logo = [[
   ██████   █████                   █████   █████  ███                  
