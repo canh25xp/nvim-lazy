@@ -10,7 +10,7 @@ g.autoformat = false
 g.root_spec = { "cwd" }
 
 opt.linebreak = true
-opt.timeoutlen = 1000
+opt.timeoutlen = 500
 opt.relativenumber = true
 opt.cursorlineopt = "number"
 opt.conceallevel = 0
