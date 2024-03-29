@@ -1,4 +1,3 @@
-
 local logo = [[
   ██████   █████                   █████   █████  ███                  
  ░░██████ ░░███                   ░░███   ░░███  ░░░                   
@@ -91,10 +90,11 @@ return {
       },
       sections = {
         lualine_z = {
-          {"encoding"},
-          {"fileformat"},
-        }
-      }
+          { "encoding" },
+          { "fileformat" },
+        },
+      },
+      extensions = { "neo-tree", "lazy", "toggleterm" },
     },
   },
 }
