@@ -49,8 +49,8 @@ require("lazy").setup({
   },
   ui = {
     size = {
-      width = 1,
-      height = 1,
+      width = 0.9,
+      height = 0.9,
     },
   },
   custom_keys = {
