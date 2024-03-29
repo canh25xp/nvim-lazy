@@ -90,6 +90,12 @@ return {
       options = {
         theme = "powerline",
       },
+      sections = {
+        lualine_z = {
+          {"encoding"},
+          {"fileformat"},
+        }
+      }
     },
   },
 }
