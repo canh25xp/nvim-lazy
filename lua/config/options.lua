@@ -33,5 +33,5 @@ if g.neovide then
   o.guifont = "Hack Nerd Font:h12"
   g.neovide_fullscreen = true
   g.neovide_scroll_animation_length = 0.3
-  g.neovide_cursor_vfx_mode = "railgun"
+  g.neovide_cursor_vfx_mode = "sonicboom"
 end
