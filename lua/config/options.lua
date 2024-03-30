@@ -27,3 +27,8 @@ if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
   opt.shellquote = ""
   opt.shellxquote = ""
 end
+
+if vim.g.neovide then
+  vim.g.neovide_fullscreen = true
+  vim.g.neovide_scroll_animation_length = 0.3
+end
