@@ -3,8 +3,16 @@
 -- Add any additional keymaps here
 
 local map = vim.keymap.set
-local nomap = vim.keymap.del
+-- local nomap = vim.keymap.del
 local util = require("lazyvim.util")
+
+local function toggle_theme()
+  if vim.g.colors_name == "tokyonight" then
+    vim.cmd("colorscheme catppuccin")
+  else
+    vim.cmd("colorscheme tokyonight")
+  end
+end
 
 -- local function toggle_term()
 --   local opts = {
@@ -52,7 +60,7 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map("n", "q;", "q:", { desc = "CMD history" })
 
 -- Theme
--- map("n", "<C-b>", "<cmd>colorscheme habamax<cr>", { desc = "" })
+map("n", "<leader>ut", toggle_theme, { desc = "Toggle theme" })
 
 -- Explorer
 map("n", "<C-n>", "<leader>fe", { desc = "Explorer NeoTree (root dir)", remap = true })

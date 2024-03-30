@@ -1,3 +1,10 @@
+local theme = ""
+if vim.g.neovide then
+  theme = "catppuccin"
+else
+  theme = "tokyonight"
+end
+
 return {
   -- Config tokyonight
   {
@@ -19,11 +26,10 @@ return {
       },
     },
   },
-  -- Load the plugin
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      colorscheme = theme
     },
   },
 }
