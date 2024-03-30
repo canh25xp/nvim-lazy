@@ -4,6 +4,7 @@
 
 local opt = vim.opt
 local g = vim.g
+local o = vim.o
 
 g.maplocalleader = "\\"
 g.autoformat = false
@@ -28,8 +29,9 @@ if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
   opt.shellxquote = ""
 end
 
-if vim.g.neovide then
-  vim.o.guifont = "Hack Nerd Font:h12"
-  vim.g.neovide_fullscreen = true
-  vim.g.neovide_scroll_animation_length = 0.3
+if g.neovide then
+  o.guifont = "Hack Nerd Font:h12"
+  g.neovide_fullscreen = true
+  g.neovide_scroll_animation_length = 0.3
+  g.neovide_cursor_vfx_mode = "railgun"
 end
