@@ -53,4 +53,18 @@ return {
     },
     cmd = "Glow",
   },
+  {
+    "chrisbra/unicode.vim",
+    cmd = {
+      "UnicodeName",
+      "UnicodeSearch",
+      "Digraphs",
+    }
+  },
+  {
+    "norcalli/nvim-colorizer.lua",
+    cmd = {
+      "ColorizerToggle"
+    }
+  }
 }
