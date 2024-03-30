@@ -29,6 +29,7 @@ if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
 end
 
 if vim.g.neovide then
+  vim.o.guifont = "Hack Nerd Font:h12"
   vim.g.neovide_fullscreen = true
   vim.g.neovide_scroll_animation_length = 0.3
 end
