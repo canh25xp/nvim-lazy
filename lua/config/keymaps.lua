@@ -15,15 +15,7 @@ local function toggle_theme()
 end
 
 local function glow()
-  util.terminal({ "glow" }, {
-    size = {
-      width = 1,
-      height = 1,
-    },
-    cwd = util.root(),
-    esc_esc = false,
-    ctrl_hjkl = false,
-  })
+  vim.cmd("terminal glow")
 end
 
 -- Utilities
@@ -31,7 +23,7 @@ map("n", "<leader>md", glow, { desc = "Open markdown file" })
 
 -- Terminal
 -- map("t", "jk", "<C-\\><C-n>", { desc = "Enter Normal Mode" })
-map("t", "<ESC>", "<C-\\><C-n>", { desc = "Enter Normal Mode", nowait = true })
+-- map("t", "<ESC>", "<C-\\><C-n>", { desc = "Enter Normal Mode", nowait = true })
 -- map("n", "<C-_>", toggle_term, { desc = "Terminal (root dir )" }) -- Auto translate to <C-/>
 
 -- General
@@ -47,7 +39,6 @@ map("n", "<C-n>", "<leader>fe", { desc = "Explorer NeoTree (root dir)", remap = 
 
 -- Buffer
 map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>d", "<leader>bd", { desc = "Delete Buffer", remap = true })
 
 -- Comment
 map("n", "<leader>/", "gcc", { desc = "Comment whole line", remap = true })
