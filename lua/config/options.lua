@@ -6,6 +6,7 @@ local opt = vim.opt
 local g = vim.g
 local o = vim.o
 
+g.maplocalleader = ","
 g.autoformat = false
 g.root_spec = { "cwd" }
 
