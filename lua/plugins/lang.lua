@@ -20,6 +20,9 @@ return {
         ["tex"] = { "latexindent" },
       },
       formatters = {
+        latexindent = {
+          args = { "-m", "-l" },
+        },
         djlint = {
           args = { "--reformat", "-" },
           cwd = require("conform.util").root_file({
