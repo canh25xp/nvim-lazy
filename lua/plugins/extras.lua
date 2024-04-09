@@ -26,4 +26,15 @@ return {
     "lukas-reineke/headlines.nvim",
     enabled = false,
   },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        ruff_lsp = {
+          mason = false,
+          autostart = false,
+        },
+      },
+    },
+  },
 }
