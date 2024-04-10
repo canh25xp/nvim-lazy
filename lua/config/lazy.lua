@@ -79,7 +79,7 @@ require("lazy").setup({
     },
   },
   dev = {
-    -- fallback = true,
+    fallback = true,
     path = "~/projects/lua",
     -- pattern = {
     --   "LazyVim",
