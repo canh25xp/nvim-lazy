@@ -11,7 +11,7 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { "LazyVim/LazyVim", import = "lazyvim.plugins", dev = true },
     -- import any extras modules here
     { import = "lazyvim.plugins.extras.lang.json" },
     { import = "lazyvim.plugins.extras.lang.python" },
@@ -75,5 +75,12 @@ require("lazy").setup({
       end,
       desc = "Open terminal in plugin dir",
     },
+  },
+  dev = {
+    -- fallback = true,
+    path = "~/projects/lua",
+    -- pattern = {
+    --   "LazyVim",
+    -- },
   },
 })
