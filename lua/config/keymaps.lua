@@ -3,7 +3,7 @@
 -- Add any additional keymaps here
 
 local map = vim.keymap.set
--- local nomap = vim.keymap.del
+local nomap = vim.keymap.del
 local util = require("lazyvim.util")
 
 local function toggle_theme()
