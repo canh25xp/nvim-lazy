@@ -1,5 +1,9 @@
 return {
   {
+    "folke/flash.nvim",
+    enabled = false
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       close_if_last_window = true,
