@@ -24,6 +24,11 @@ return {
     name = "catppuccin",
     opts = {
       transparent_background = false,
+      background = {
+        light = "latte",
+        dark = "mocha",
+      },
+      show_end_of_buffer = true, -- shows the '~' characters after the end of buffers
       -- color_overrides = {
       --   mocha = {
       --     text = "#F4CDE9",
