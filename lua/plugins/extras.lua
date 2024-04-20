@@ -11,6 +11,7 @@ return {
       -- vim.g.vimtex_compiler_latexmk_engines = { ["_"] = "-lualatex" }
       vim.g.vimtex_view_enabled = 1
       vim.g.vimtex_view_automatic = 0
+      vim.g.vimtex_doc_confirm_single = 0
       vim.g.vimtex_doc_handlers = { "vimtex#doc#handlers#texdoc" }
     end,
   },
