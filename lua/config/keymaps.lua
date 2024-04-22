@@ -18,6 +18,16 @@ local function glow()
   vim.cmd("terminal glow")
 end
 
+vim.g.neovide_scale_factor = 1.0
+
+local neovide_zoom_in = function()
+  vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * 1.25
+end
+
+local neovide_zoom_out = function()
+  vim.g.neovide_scale_factor = vim.g.neovide_scale_factor / 1.25
+end
+
 -- Utilities
 map("n", "<leader>md", glow, { desc = "Open markdown file" })
 
@@ -43,3 +53,8 @@ map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 -- Comment
 map("n", "<leader>/", "gcc", { desc = "Comment whole line", remap = true })
 map("v", "<leader>/", "gc", { desc = "Comment selected lines", remap = true })
+
+-- Neovide
+map("n", "<C-=>", neovide_zoom_in, { desc = "Neovim zoom in" })
+map("n", "<C-->", neovide_zoom_out, { desc = "Neovim zoom out" })
+
