@@ -30,7 +30,7 @@ if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
 end
 
 if g.neovide then
-  o.guifont = "CaskaydiaCove Nerd Font:h12"
+  -- o.guifont = "CaskaydiaCove Nerd Font:h12"
   g.neovide_fullscreen = false
   g.neovide_scroll_animation_length = 0.3
   g.neovide_cursor_vfx_mode = "sonicboom"
