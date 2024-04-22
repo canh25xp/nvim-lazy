@@ -55,6 +55,7 @@ map("n", "<leader>/", "gcc", { desc = "Comment whole line", remap = true })
 map("v", "<leader>/", "gc", { desc = "Comment selected lines", remap = true })
 
 -- Neovide
-map("n", "<C-=>", neovide_zoom_in, { desc = "Neovim zoom in" })
-map("n", "<C-->", neovide_zoom_out, { desc = "Neovim zoom out" })
+
+map("n", "<C-=>", neovide_zoom_in, { desc = "Neovide zoom in" })
+map("n", "<C-->", neovide_zoom_out, { desc = "Neovide zoom out" })
 
