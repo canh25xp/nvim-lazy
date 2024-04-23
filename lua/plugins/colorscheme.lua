@@ -1,10 +1,3 @@
-local theme = ""
-if vim.g.neovide then
-  theme = "catppuccin"
-else
-  theme = "tokyonight"
-end
-
 return {
   {
     "folke/tokyonight.nvim",
