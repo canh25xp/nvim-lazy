@@ -5,7 +5,7 @@ return {
       vim.g.vimtex_mappings_disable = { ["n"] = { "K" } } -- disable `K` as it conflicts with LSP hover
       vim.g.vimtex_quickfix_method = vim.fn.executable("pplatex") == 1 and "pplatex" or "latexlog"
       vim.g.vimtex_compiler_latexmk = {
-        continuous = 0,
+        continuous = 1,
       }
       -- vim.g.tex_conceal = "abdmgs"
       vim.g.vimtex_quickfix_mode = 0
