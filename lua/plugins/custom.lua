@@ -43,6 +43,7 @@ return {
     keys = {
       { [[<C-\>]] },
       { "<leader>0", "<Cmd>2ToggleTerm<Cr>", desc = "Terminal #2" },
+      { "<leader>t", "<Cmd>ToggleTerm direction=tab<Cr>", desc = "Terminal in new tab" },
     },
   },
   -- Preview and render Markdown directly in the terminal
