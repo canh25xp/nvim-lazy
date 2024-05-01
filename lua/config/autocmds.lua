@@ -6,4 +6,4 @@ local api = vim.api
 
 api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
-api.nvim_create_autocmd("TermOpen", {command = "setlocal nonu nornu signcolumn=no"})
+api.nvim_create_autocmd("TermOpen", {command = "startinsert | setlocal nonu nornu signcolumn=no"})
