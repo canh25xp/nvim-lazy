@@ -1,14 +1,15 @@
 return {
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, {
-          "htmldjango",
-        })
-      end
-    end,
-  },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   opts = function(_, opts)
+  --     if type(opts.ensure_installed) == "table" then
+  --       vim.list_extend(opts.ensure_installed, {
+  --         "htmldjango",
+  --       })
+  --     end
+  --   end,
+  -- },
+
   -- https://djlint.com/docs/formatter/
   {
     "stevearc/conform.nvim",
@@ -35,24 +36,24 @@ return {
       },
     },
   },
-  {
-    "mfussenegger/nvim-lint",
-    opts = {
-      linters_by_ft = {
-        htmldjango = { "djlint" },
-        html = { "djlint" },
-      },
-    },
-  },
-  {
-    "williamboman/mason.nvim",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        "latexindent",
-        "djlint",
-      })
-    end,
-  },
+  -- {
+  --   "mfussenegger/nvim-lint",
+  --   opts = {
+  --     linters_by_ft = {
+  --       htmldjango = { "djlint" },
+  --       html = { "djlint" },
+  --     },
+  --   },
+  -- },
+  -- {
+  --   "williamboman/mason.nvim",
+  --   opts = function(_, opts)
+  --     vim.list_extend(opts.ensure_installed, {
+  --       "latexindent",
+  --       "djlint",
+  --     })
+  --   end,
+  -- },
   -- {
   --   "williamboman/mason-lspconfig.nvim",
   --   config = function()
