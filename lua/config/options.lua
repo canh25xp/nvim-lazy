@@ -18,6 +18,16 @@ opt.conceallevel = 0
 opt.wildmode = "list:full" -- Command-line completion mode
 opt.smoothscroll = false
 
+opt.fillchars = {
+  horiz = '━',
+  horizup = '┻',
+  horizdown = '┳',
+  vert = '┃',
+  vertleft  = '┫',
+  vertright = '┣',
+  verthoriz = '╋',
+}
+
 -- Set shell to PowerShell 7 if on Win32 or Win64
 if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
   opt.shell = "pwsh"
