@@ -38,7 +38,7 @@ map("n", "<leader>md", glow, { desc = "Open markdown file" })
 
 -- General
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
-map("n", ";", ":", { desc = "CMD enter command mode" })
+-- map("n", ";", ":", { desc = "CMD enter command mode" })
 map("n", "q;", "q:", { desc = "CMD history" })
 
 -- Theme
