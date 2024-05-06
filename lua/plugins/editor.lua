@@ -6,11 +6,11 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
-      default_component_configs = {
-        git_status = {
-          symbols = false
-        }
-      },
+      -- default_component_configs = {
+      --   git_status = {
+      --     symbols = false
+      --   }
+      -- },
       close_if_last_window = true,
       window = {
         mappings = {
