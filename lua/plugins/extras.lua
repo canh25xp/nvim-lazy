@@ -19,11 +19,6 @@ return {
         vim.g.vimtex_view_method = "sioyek"
         vim.g.vimtex_view_sioyek_exe = "sioyek.exe"
         vim.g.vimtex_callback_progpath = "wsl nvim"
-      elseif vim.fn.has("win32") or vim.fn.has("win64") then
-        vim.g.vimtex_view_method = "sioyek"
-        vim.g.vimtex_view_sioyek_exe = "sioyek.exe"
-      elseif vim.fn.has("unix") then
-        vim.g.vimtex_view_method = "zathura"
       end
       -- if vim.fn.has("win32") or (vim.fn.has("unix") and vim.fn.exists("$WSLENV")) then
       --   if vim.fn.executable("sioyek.exe") then
