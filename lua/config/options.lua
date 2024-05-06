@@ -29,6 +29,7 @@ opt.fillchars = {
 }
 
 -- Set shell to PowerShell 7 if on Win32 or Win64
+-- TODO: Consider remove the redundant "== 1"
 if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
   opt.shell = "pwsh"
   opt.shellcmdflag =

@@ -1,15 +1,22 @@
 return {
   {
     "folke/flash.nvim",
-    enabled = false
+    enabled = false,
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
+      -- default_component_configs = {
+      --   git_status = {
+      --     symbols = false
+      --   }
+      -- },
       close_if_last_window = true,
       window = {
         mappings = {
           ["l"] = "open",
+          ["."] = "toggle_hidden",
+          ["P"] = { "toggle_preview", config = { use_float = false, use_image_nvim = false} },
         },
       },
       filesystem = {
