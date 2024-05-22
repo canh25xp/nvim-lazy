@@ -15,12 +15,10 @@ return {
       vim.g.vimtex_view_automatic = 1
       vim.g.vimtex_doc_confirm_single = 0
       vim.g.vimtex_doc_handlers = { "vimtex#doc#handlers#texdoc" }
-      if vim.fn.has("wsl") then
-        vim.g.vimtex_view_method = "sioyek"
+      vim.g.vimtex_view_method = "sioyek"
+      if vim.fn.has("wsl") == 1 then
         vim.g.vimtex_view_sioyek_exe = "sioyek.exe"
         vim.g.vimtex_callback_progpath = "wsl nvim"
-      else
-        vim.g.vimtex_view_method = "sioyek"
       end
       -- vim.g.vimtex_view_sioyek_options = "--reuse-window"
 
