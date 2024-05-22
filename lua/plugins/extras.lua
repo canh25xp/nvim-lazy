@@ -19,6 +19,8 @@ return {
         vim.g.vimtex_view_method = "sioyek"
         vim.g.vimtex_view_sioyek_exe = "sioyek.exe"
         vim.g.vimtex_callback_progpath = "wsl nvim"
+      else
+        vim.g.vimtex_view_method = "sioyek"
       end
       -- vim.g.vimtex_view_sioyek_options = "--reuse-window"
 
