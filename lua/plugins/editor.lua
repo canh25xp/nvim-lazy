@@ -16,7 +16,7 @@ return {
         mappings = {
           ["l"] = "open",
           ["."] = "toggle_hidden",
-          ["P"] = { "toggle_preview", config = { use_float = false, use_image_nvim = false} },
+          ["P"] = { "toggle_preview", config = { use_float = false, use_image_nvim = false } },
         },
       },
       filesystem = {
@@ -25,6 +25,10 @@ return {
           hide_dotfiles = true,
           hide_gitignored = false,
           hide_hidden = false, -- only works on Windows for hidden files/directories
+          hide_by_pattern = {
+            "**/*.log",
+            "**/__pycache__",
+          },
         },
       },
     },
