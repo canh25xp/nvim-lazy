@@ -92,6 +92,7 @@ return {
     opts = {
       theme = "dark",
       app = "browser",
+      close_on_bdelete = false,
     },
   },
   {
