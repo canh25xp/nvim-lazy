@@ -58,3 +58,18 @@ map("v", "<leader>/", "gc", { desc = "Comment selected lines", remap = true })
 map("n", "<C-=>", neovide_zoom_in, { desc = "Neovide zoom in" })
 map("n", "<C-->", neovide_zoom_out, { desc = "Neovide zoom out" })
 
+if vim.g.vscode then
+  -- Load nvim vscode specific key bindings
+  local vscode = require("vscode")
+  vim.keymap.set("n", "<leader>cf", function()
+    vscode.action("editor.action.formatDocument")
+  end)
+
+  vim.keymap.set("n", "<leader>gg", function()
+    vscode.action("workbench.view.scm")
+  end)
+
+  vim.keymap.set("n", "<C-j>", function()
+    vscode.action("workbench.action.togglePanel")
+  end)
+end
