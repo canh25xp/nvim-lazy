@@ -69,7 +69,15 @@ if vim.g.vscode then
     vscode.action("workbench.view.scm")
   end)
 
-  vim.keymap.set("n", "<C-j>", function()
+  vim.keymap.set("n", "<leader>e", function()
+    vscode.action("workbench.view.explorer")
+  end)
+
+  vim.keymap.set("n", "<leader>E", function()
+    vscode.action("workbench.files.action.showActiveFileInExplorer")
+  end)
+
+  vim.keymap.set("n", "<leader>j", function()
     vscode.action("workbench.action.togglePanel")
   end)
 end
