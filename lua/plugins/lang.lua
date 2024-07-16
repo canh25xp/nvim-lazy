@@ -11,31 +11,31 @@ return {
   -- },
 
   -- https://djlint.com/docs/formatter/
-  {
-    "stevearc/conform.nvim",
-    optional = true,
-    opts = {
-      format = {
-        timeout_ms = 10000,
-      },
-      formatters_by_ft = {
-        ["htmldjango"] = { "djlint" },
-        ["html"] = { "djlint" },
-        ["tex"] = { "latexindent" },
-      },
-      formatters = {
-        latexindent = {
-          args = { "-m", "-l" },
-        },
-        djlint = {
-          args = { "--reformat", "-" },
-          cwd = require("conform.util").root_file({
-            ".djlintrc",
-          }),
-        },
-      },
-    },
-  },
+  -- {
+  --   "stevearc/conform.nvim",
+  --   optional = true,
+  --   opts = {
+  --     format = {
+  --       timeout_ms = 10000,
+  --     },
+  --     formatters_by_ft = {
+  --       ["htmldjango"] = { "djlint" },
+  --       ["html"] = { "djlint" },
+  --       ["tex"] = { "latexindent" },
+  --     },
+  --     formatters = {
+  --       latexindent = {
+  --         args = { "-m", "-l" },
+  --       },
+  --       djlint = {
+  --         args = { "--reformat", "-" },
+  --         cwd = require("conform.util").root_file({
+  --           ".djlintrc",
+  --         }),
+  --       },
+  --     },
+  --   },
+  -- },
   -- {
   --   "mfussenegger/nvim-lint",
   --   opts = {
