@@ -13,7 +13,6 @@ g.root_spec = { "cwd" }
 opt.linebreak = true
 opt.timeoutlen = 500
 opt.relativenumber = true
-opt.cursorlineopt = "number"
 opt.conceallevel = 0
 opt.wildmode = "list:full" -- Command-line completion mode
 opt.smoothscroll = false
@@ -30,8 +29,7 @@ opt.fillchars = {
 }
 
 -- Set shell to PowerShell 7 if on Win32 or Win64
--- TODO: Consider remove the redundant "== 1"
-if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
+if vim.fn.has("win32") or vim.fn.has("win64") then
   opt.shell = "pwsh"
   opt.shellcmdflag =
     "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
