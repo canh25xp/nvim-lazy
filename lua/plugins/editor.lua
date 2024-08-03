@@ -14,7 +14,6 @@ return {
       close_if_last_window = true,
       window = {
         mappings = {
-          ["l"] = "open",
           ["."] = "toggle_hidden",
           ["P"] = { "toggle_preview", config = { use_float = false, use_image_nvim = false } },
         },
