@@ -17,6 +17,7 @@ opt.cursorlineopt = "number"
 opt.conceallevel = 0
 opt.wildmode = "list:full" -- Command-line completion mode
 opt.smoothscroll = false
+opt.shiftwidth = 4
 
 opt.fillchars = {
   horiz = '━',
