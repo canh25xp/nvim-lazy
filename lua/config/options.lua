@@ -29,7 +29,7 @@ opt.fillchars = {
 }
 
 -- Set shell to PowerShell 7 if on Win32 or Win64
-if vim.fn.has("win32") or vim.fn.has("win64") then
+if not vim.fn.has("win32") or not vim.fn.has("win64") then
   opt.shell = "pwsh"
   opt.shellcmdflag =
     "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
