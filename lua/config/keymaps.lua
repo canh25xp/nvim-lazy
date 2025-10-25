@@ -11,6 +11,11 @@ map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 -- Buffer
 map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
+-- Terminal
+pcall(vim.keymap.del, { "n", "t" }, "<C-/>")
+pcall(vim.keymap.del, { "n", "t" }, "<C-_>")
+map({ "n", "t" }, "<c-\\>", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal Toggle" })
+
 if vim.g.vscode then
   -- Load nvim vscode specific key bindings
   local vscode = require("vscode")
