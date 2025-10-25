@@ -1,6 +1,13 @@
 return {
   "snacks.nvim",
   opts = {
+    styles = {
+      lazygit = {
+        height = 0,
+        width = 0,
+        border = "none",
+      },
+    },
     terminal = {
       win = {
         keys = {
