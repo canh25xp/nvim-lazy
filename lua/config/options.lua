@@ -4,19 +4,11 @@
 
 local opt = vim.opt
 local g = vim.g
-local o = vim.o
 
--- g.maplocalleader = ","
 g.autoformat = false
 g.root_spec = { "cwd" }
 
-opt.linebreak = true
-opt.timeoutlen = 500
-opt.relativenumber = true
 opt.conceallevel = 0
-opt.wildmode = "list:full" -- Command-line completion mode
-opt.smoothscroll = false
-opt.shiftwidth = 4
 
 opt.fillchars = {
   horiz = "━",
