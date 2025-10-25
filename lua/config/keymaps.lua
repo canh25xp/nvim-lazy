@@ -16,6 +16,11 @@ pcall(vim.keymap.del, { "n", "t" }, "<C-/>")
 pcall(vim.keymap.del, { "n", "t" }, "<C-_>")
 map({ "n", "t" }, "<c-\\>", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal Toggle" })
 
+-- Lazy
+pcall(vim.keymap.del, "n", "<leader>l")
+map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>le", "<cmd>LazyExtras<cr>", { desc = "Lazy" })
+
 if vim.g.vscode then
   -- Load nvim vscode specific key bindings
   local vscode = require("vscode")
