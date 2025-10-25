@@ -9,6 +9,7 @@ g.autoformat = false
 g.root_spec = { "cwd" }
 
 opt.conceallevel = 0
+opt.winborder = "rounded"
 
 opt.fillchars = {
   horiz = "━",
