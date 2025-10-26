@@ -15,6 +15,9 @@ map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 pcall(vim.keymap.del, { "n", "t" }, "<C-/>")
 pcall(vim.keymap.del, { "n", "t" }, "<C-_>")
 map({ "n", "t" }, "<c-\\>", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal Toggle" })
+-- TODO: make it full screen with no border
+map("n", "<leader>bt", function() Snacks.terminal({ "btm" }, {}) end, { desc = "Bottom" })
+map("n", "<leader>cl", function() Snacks.terminal({ "cline" }, {}) end, { desc = "Cline" })
 
 -- Lazy
 pcall(vim.keymap.del, "n", "<leader>l")
