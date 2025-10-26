@@ -3,6 +3,7 @@
 -- Add any additional keymaps here
 
 local map = vim.keymap.set
+local ci_selector = require("common.ci_selector")
 
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 -- map("n", ";", ":", { desc = "CMD enter command mode" })
@@ -16,7 +17,7 @@ pcall(vim.keymap.del, { "n", "t" }, "<C-/>")
 pcall(vim.keymap.del, { "n", "t" }, "<C-_>")
 map({ "n", "t" }, "<c-\\>", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal Toggle" })
 map("n", "<leader>bt", function() Snacks.terminal({ "btm" }, { win = { style = "lazygit" } }) end, { desc = "Bottom" })
-map("n", "<leader>cl", function() Snacks.terminal({ "cline" }, { win = { style = "lazygit" } }) end, { desc = "Cline" })
+map("n", "<leader>ci", function() ci_selector.ci() end, { desc = "Code Intelligent" })
 
 -- Lazy
 pcall(vim.keymap.del, "n", "<leader>l")
