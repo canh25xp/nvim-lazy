@@ -1,6 +1,6 @@
 local M = {}
 
-local choices = { "cline", "codex", "gemini", "copilot", "qwen" }
+local choices = { "cline", "claude", "codex", "gemini", "copilot", "qwen" }
 local data_file = vim.fn.stdpath("config") .. "/.options.txt"
 
 local function run_with_choice(choice)
