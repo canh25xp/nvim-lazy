@@ -5,9 +5,6 @@
 vim.g.autoformat = false
 vim.g.root_spec = { "cwd" }
 
-vim.opt.conceallevel = 0
-vim.opt.winborder = "rounded"
-
 vim.opt.fillchars = {
   horiz = "━",
   horizup = "┻",
