@@ -1,5 +1,6 @@
 return {
   "catppuccin/nvim",
+  name = "catppuccin",
   keys = {
     {
       "<leader>ut",
