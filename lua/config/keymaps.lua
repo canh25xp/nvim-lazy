@@ -12,10 +12,12 @@ map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 -- Buffer
 map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
+-- BUG: Snacks is not yet available when lazy.nvim first install, causing field not found on first time neovim open.
 -- Terminal
 pcall(vim.keymap.del, { "n", "t" }, "<C-/>")
 pcall(vim.keymap.del, { "n", "t" }, "<C-_>")
 map({ "n", "t" }, "<c-\\>", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal Toggle" })
+map("n", "<leader>tt", function() Snacks.terminal(nil, { cwd = LazyVim.root(), win = { position = "float", width = 0, height = 0, border = "none" } }) end, { desc = "Terminal Fullscreen" })
 map("n", "<leader>bt", function() Snacks.terminal({ "btm" }, { win = { style = "lazygit" } }) end, { desc = "Bottom" })
 map("n", "<leader>ci", function() ci_selector.ci() end, { desc = "Code Intelligent" })
 
