@@ -1,40 +1,38 @@
 return {
   "snacks.nvim",
-  opts = {
-    scroll = {
+  opts = function(_, opts)
+    opts.scroll = vim.tbl_deep_extend("force", opts.scroll or {}, {
       enabled = not vim.g.is_windows,
-    },
-    styles = {
-      lazygit = {
-        height = 0,
-        width = 0,
-        border = "none",
-      },
-    },
-    terminal = {
-      win = {
-        keys = {
-          hide_slash = { "<C-\\>", "hide", desc = "Hide Terminal", mode = { "t", "n" } },
-        },
-      },
-    },
-    dashboard = {
-      preset = {
-        -- Override default keys Recent Files and Restore Session
-        -- TODO: is there a better way to do this ? I don't want to redefine every keys
-        -- stylua: ignore
-        keys = {
-          { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
-          { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-          { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
-          { icon = " ", key = ".", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-          { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
-          { icon = " ", key = "r", desc = "Restore Session", section = "session" },
-          { icon = " ", key = "x", desc = "Lazy Extras", action = ":LazyExtras" },
-          { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
-          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
-        },
-      },
-    },
-  },
+    })
+
+    opts.styles = opts.styles or {}
+    opts.styles.lazygit = vim.tbl_deep_extend("force", opts.styles.lazygit or {}, {
+      height = 0,
+      width = 0,
+      border = "none",
+    })
+
+    opts.terminal = opts.terminal or {}
+    opts.terminal.win = opts.terminal.win or {}
+    opts.terminal.win.keys = vim.tbl_deep_extend("force", opts.terminal.win.keys or {}, {
+      hide_slash = { "<C-\\>", "hide", desc = "Hide Terminal", mode = { "t", "n" } },
+    })
+
+    opts.dashboard = opts.dashboard or {}
+    opts.dashboard.preset = opts.dashboard.preset or {}
+    local keys = opts.dashboard.preset.keys
+    if type(keys) ~= "table" then
+      keys = {}
+      opts.dashboard.preset.keys = keys
+    end
+
+    -- index, item
+    for _, item in ipairs(keys) do
+      if item.desc == "Recent Files" then
+        item.key = "."
+      elseif item.desc == "Restore Session" then
+        item.key = "r"
+      end
+    end
+  end,
 }
