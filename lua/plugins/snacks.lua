@@ -1,6 +1,9 @@
 return {
   "snacks.nvim",
   opts = {
+    scroll = {
+      enabled = not vim.g.is_windows,
+    },
     styles = {
       lazygit = {
         height = 0,
