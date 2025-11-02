@@ -3,13 +3,6 @@
 -- Add any additional keymaps here
 
 local map = vim.keymap.set
-local ci_selector = require("common.ci_selector")
-
-local ok, snacks = pcall(require, "snacks")
-if not ok then
-  vim.notify("Snacks is not available yet", vim.log.levels.WARN)
-  return
-end
 
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 -- map("n", ";", ":", { desc = "CMD enter command mode" })
@@ -17,14 +10,6 @@ map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 
 -- Buffer
 map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-
--- Terminal
-pcall(vim.keymap.del, { "n", "t" }, "<C-/>")
-pcall(vim.keymap.del, { "n", "t" }, "<C-_>")
-map({ "n", "t" }, "<c-\\>", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal Toggle" })
-map("n", "<leader>tt", function() Snacks.terminal(nil, { cwd = LazyVim.root(), win = { position = "float", width = 0, height = 0, border = "none" } }) end, { desc = "Terminal Fullscreen" })
-map("n", "<leader>bt", function() Snacks.terminal({ "btm" }, { win = { style = "lazygit" } }) end, { desc = "Bottom" })
-map("n", "<leader>ci", function() ci_selector.ci() end, { desc = "Code Intelligent" })
 
 -- Lazy
 pcall(vim.keymap.del, "n", "<leader>l")

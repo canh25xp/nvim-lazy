@@ -1,3 +1,5 @@
+local ci_selector = require("common.ci_selector")
+
 return {
   "snacks.nvim",
   opts = function(_, opts)
@@ -35,4 +37,12 @@ return {
       end
     end
   end,
+  -- stylua: ignore
+  keys = {
+    { "<C-\\>",       function() Snacks.terminal() end, desc = "Toggle Terminal" },
+    { "<leader>tt",   function() Snacks.terminal(nil, { cwd = LazyVim.root(), win = { position = "float", width = 0, height = 0, border = "none" } }) end, desc = "Terminal Fullscreen" },
+    { "<leader>lf",   function() Snacks.terminal({ "lf" }, { win = { style = "lazygit" } }) end, desc = "List Files" },
+    { "<leader>bt",   function() Snacks.terminal({ "btm" }, { win = { style = "lazygit" } }) end, desc = "Bottom" },
+    { "<leader>ci",   function() ci_selector.ci() end, desc = "Code Intelligent" }
+  },
 }
