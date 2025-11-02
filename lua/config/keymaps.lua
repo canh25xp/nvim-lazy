@@ -5,6 +5,12 @@
 local map = vim.keymap.set
 local ci_selector = require("common.ci_selector")
 
+local ok, snacks = pcall(require, "snacks")
+if not ok then
+  vim.notify("Snacks is not available yet", vim.log.levels.WARN)
+  return
+end
+
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 -- map("n", ";", ":", { desc = "CMD enter command mode" })
 -- map("n", "q;", "q:", { desc = "CMD history" })
@@ -12,7 +18,6 @@ map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 -- Buffer
 map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
--- BUG: Snacks is not yet available when lazy.nvim first install, causing field not found on first time neovim open.
 -- Terminal
 pcall(vim.keymap.del, { "n", "t" }, "<C-/>")
 pcall(vim.keymap.del, { "n", "t" }, "<C-_>")
