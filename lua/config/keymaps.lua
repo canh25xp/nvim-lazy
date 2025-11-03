@@ -8,6 +8,9 @@ map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 -- map("n", ";", ":", { desc = "CMD enter command mode" })
 -- map("n", "q;", "q:", { desc = "CMD history" })
 
+pcall(vim.keymap.del, "n", "<leader>|")
+map("n", "<leader>\\", "<C-w>v", { desc = "Split Window Right" })
+
 -- Buffer
 map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
