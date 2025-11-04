@@ -16,6 +16,9 @@ return {
 
     opts.terminal = opts.terminal or {}
     opts.terminal.win = opts.terminal.win or {}
+    opts.terminal.win.wo = vim.tbl_deep_extend("force", opts.terminal.win.wo or {}, {
+      winbar = "",
+    })
     opts.terminal.win.keys = vim.tbl_deep_extend("force", opts.terminal.win.keys or {}, {
       hide_slash = { "<C-\\>", "hide", desc = "Hide Terminal", mode = { "t", "n" } },
     })
