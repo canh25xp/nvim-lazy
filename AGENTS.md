@@ -14,4 +14,10 @@ Follow the existing log style: `<area>: short imperative summary` (e.g., `nvim-l
 
 ## Agent-Specific Tips
 
-Since this config is based on the `LazyVim` distribution, most configurations is made by LazyVim, so you should always look into the LazyVim directory at `~/.local/share/nvim-lazy/lazy/LazyVim/lua/lazyvim` for references.
+Since this config is based on the `LazyVim` distribution, most configurations is made by LazyVim, so you should always look into the LazyVim directory:
+
+- `~/.local/share/nvim-lazy/lazy/LazyVim/lua/lazyvim` for references.
+
+If you want to search a specific documents for a plugin, look in to this directory:
+
+- `~/.local/share/nvim-lazy/lazy/plugin-name/doc/"`
