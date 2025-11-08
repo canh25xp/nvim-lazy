@@ -1,6 +1,20 @@
 return {
   {
     "xvzc/chezmoi.nvim",
+    opts = {
+      edit = {
+        watch = false,
+        force = false,
+        ignore_patterns = {
+          "run_onchange_.*",
+          "run_once_.*",
+          "%.chezmoiignore",
+          "%.chezmoitemplate",
+          "%.lua",
+          "%.md",
+        },
+      },
+    },
     init = function()
       local home = vim.env.HOME
       if not home or home == "" then
