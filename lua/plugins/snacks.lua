@@ -1,5 +1,14 @@
 local ci_selector = require("common.ci_selector")
 
+local logo = [[
+███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
+]]
+
 return {
   "snacks.nvim",
   opts = function(_, opts)
@@ -30,6 +39,7 @@ return {
       keys = {}
       opts.dashboard.preset.keys = keys
     end
+    opts.dashboard.preset.header = logo
 
     -- index, item
     for _, item in ipairs(keys) do
