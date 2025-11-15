@@ -4,7 +4,7 @@ return {
     opts = {
       edit = {
         watch = false,
-        force = false,
+        force = true,
         ignore_patterns = {
           "run_onchange_.*",
           "run_once_.*",
