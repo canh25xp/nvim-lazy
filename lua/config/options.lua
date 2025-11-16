@@ -5,6 +5,8 @@
 vim.g.autoformat = false
 vim.g.root_spec = { "cwd" }
 
+vim.opt.spelloptions = "camel"
+
 vim.opt.fillchars = {
   horiz = "━",
   horizup = "┻",
