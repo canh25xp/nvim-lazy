@@ -6,6 +6,5 @@ debug
 foo.*
 *.log
 data
-lazyvim.json
 .catppuccin/
 .options.txt
