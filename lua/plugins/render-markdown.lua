@@ -3,7 +3,7 @@ return {
   opts = {
     checkbox = {
       enabled = true,
-      bullet = true,
+      bullet = false,
       unchecked = {
         icon = "󰄱 ",
         highlight = "RenderMarkdownUnchecked",
