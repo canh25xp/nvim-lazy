@@ -21,5 +21,13 @@ return {
         path = "~/Documents/DevNote",
       },
     },
+    ui = {
+      enable = false,
+    },
+    checkbox = {
+      enabled = true,
+      create_new = true,
+      order = { " ", "/", "<", "-", ">", "?", "!", "x" },
+    },
   },
 }
