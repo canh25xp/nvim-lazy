@@ -5,8 +5,20 @@
 local map = vim.keymap.set
 
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
--- map("n", ";", ":", { desc = "CMD enter command mode" })
--- map("n", "q;", "q:", { desc = "CMD history" })
+map("n", "J", "mzJ`z", { desc = "Join without moving cursor" })
+map("n", "<leader>//", [[/\<<C-r><C-w>\><cr>]], { desc = "Search word under cursor", silent = true })
+map("n", "<leader>/s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Substitute word under cursor" })
+map("n", "<leader>rc", [[<cmd>%s/\r//g|nohlsearch<CR>]], { desc = "Remove carriage return (^M)" }) -- ^M is <C-v><C-M>
+map("n", "<leader>rw", [[<cmd>%s/\s\+$//e|nohlsearch<CR>]], { desc = "Remove trailing whitespaces" })
+
+-- Yank, Paste and Delete
+map("n", "<leader>Y", [["+Y]], { desc = "Yank to system clipboad" })
+map("n", "<leader>P", [["+P]], { desc = "Paste from system clipboard" })
+map("n", "<leader>p", [["+p]], { desc = "Paste from system clipboard" })
+map("i", "<C-r><C-r>", [[<C-o>"+p]], { desc = "Paste form system clipboard" })
+map("x", "<leader>p", [["_dP]], { desc = "Delete and Paste" })
+map("n", "<leader>d", [["_d]], { desc = "Delete" })
+map("n", "<leader>0", [["0p"]], { desc = "Paste last yank" })
 
 pcall(vim.keymap.del, "n", "<leader>|")
 map("n", "<leader>\\", "<C-w>v", { desc = "Split Window Right" })
