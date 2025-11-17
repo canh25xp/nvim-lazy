@@ -15,6 +15,7 @@ return {
         scope_highlight = "@markup.strikethrough",
       },
       -- stylua: ignore
+      -- BUG: The abort symbol sometime get mixed up with the onhold symbol. Reproduce frequency: 50%
       custom = {
         progress    = { raw = "[/]", rendered = "󰿠 ", highlight = "RenderMarkdownTodo", scope_highlight = nil },
         onhold      = { raw = "[<]", rendered = "󰥔 ", highlight = "RenderMarkdownTodo", scope_highlight = nil },
