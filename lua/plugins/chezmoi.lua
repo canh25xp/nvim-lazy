@@ -12,6 +12,7 @@ return {
           "%.chezmoitemplate",
           "%.lua",
           "%.md",
+          "%.tmpl",
         },
       },
     },
