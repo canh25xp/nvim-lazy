@@ -1,6 +1,11 @@
 return {
   "MeanderingProgrammer/render-markdown.nvim",
   opts = {
+    code = {
+      conceal_delimiters = true,
+      language = true,
+      border = "none",
+    },
     checkbox = {
       enabled = true,
       bullet = false,
