@@ -20,6 +20,12 @@ map("x", "<leader>p", [["_dP]], { desc = "Delete and Paste" })
 map("n", "<leader>d", [["_d]], { desc = "Delete" })
 map("n", "<leader>0", [["0p"]], { desc = "Paste last yank" })
 
+-- Srolling
+map("n", "<left>", "zh", { desc = "Scroll left" })
+map("n", "<right>", "zl", { desc = "Scroll right" })
+map("n", "<up>", "<C-y>", { desc = "Scroll up" })
+map("n", "<down>", "<C-e>", { desc = "Scroll down" })
+
 pcall(vim.keymap.del, "n", "<leader>|")
 map("n", "<leader>\\", "<C-w>v", { desc = "Split Window Right" })
 
