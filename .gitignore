@@ -8,3 +8,4 @@ foo.*
 data
 .catppuccin/
 .options.txt
+grep_patterns

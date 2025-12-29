@@ -10,6 +10,7 @@ map("n", "<leader>//", [[/\<<C-r><C-w>\><cr>]], { desc = "Search word under curs
 map("n", "<leader>/s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Substitute word under cursor" })
 map("n", "<leader>rc", [[<cmd>%s/\r//g|nohlsearch<CR>]], { desc = "Remove carriage return (^M)" }) -- ^M is <C-v><C-M>
 map("n", "<leader>rw", [[<cmd>%s/\s\+$//e|nohlsearch<CR>]], { desc = "Remove trailing whitespaces" })
+map("n", "<leader>s.", "<cmd>GrepPatterns<cr>", { desc = "Saved grep patterns" })
 
 -- Yank, Paste and Delete
 map("n", "<leader>Y", [["+Y]], { desc = "Yank to system clipboad" })

@@ -7,3 +7,4 @@ vim.g.path_sep = vim.g.is_windows and ";" or ":"
 
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
+require("config.usercommands")
