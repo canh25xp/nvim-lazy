@@ -10,7 +10,7 @@ return {
     -- "BufReadPre path/to/my-vault/*.md",
     -- "BufNewFile path/to/my-vault/*.md",
     -- stylua: ignore
-    "BufReadPre " .. (vim.fn.expand("~") .. "/Documents/DevNote/*.md"):gsub("\\", "/"),
+    "BufReadPre " .. (vim.fn.expand("~") .. "/Documents/**/*.md"):gsub("\\", "/"),
   },
   ---@module 'obsidian'
   ---@type obsidian.config
@@ -19,6 +19,14 @@ return {
       {
         name = "DevNote",
         path = "~/Documents/DevNote",
+      },
+      {
+        name = "BunniesDiary",
+        path = "~/Documents/BunniesDiary",
+      },
+      {
+        name = "IssueTracker",
+        path = "~/Documents/IssueTracker",
       },
     },
     ui = {
