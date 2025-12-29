@@ -137,7 +137,8 @@ vim.api.nvim_create_user_command("GrepPatterns", function()
     if not pattern then
       return
     end
-    local cmd = ("vimgrep %s %%"):format(pattern:gsub("%%", "%%%%"))
+    local escaped = vim.fn.shellescape(pattern)
+    local cmd = "grep " .. escaped .. " %"
     vim.cmd(cmd)
   end)
 end, {
