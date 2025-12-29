@@ -12,8 +12,57 @@ local function starts_with(str, prefix)
   return str:sub(1, #prefix) == prefix
 end
 
+local function normalize_path(path)
+  if not path or path == "" then
+    return nil
+  end
+  local expanded = vim.fn.expand(path)
+  local ok, normalized = pcall(vim.fn.fnamemodify, expanded, ":p")
+  if ok and normalized and normalized ~= "" then
+    return normalized
+  end
+  return expanded ~= "" and expanded or path
+end
+
 local function get_patterns_file()
-  return vim.g.vimgrep_patterns_file or (vim.fn.stdpath("config") .. "/grep_patterns")
+  local seen = {}
+  local paths = {}
+
+  local function add_path(path)
+    path = normalize_path(path)
+    if path and not seen[path] then
+      seen[path] = true
+      paths[#paths + 1] = path
+    end
+  end
+
+  local override = vim.g.vimgrep_patterns_file
+  if type(override) == "string" then
+    add_path(override)
+  elseif type(override) == "table" then
+    for _, path in ipairs(override) do
+      add_path(path)
+    end
+  end
+
+  add_path(vim.fn.stdpath("config") .. "/grep_patterns")
+
+  local home
+  if vim.loop and vim.loop.os_homedir then
+    home = vim.loop.os_homedir()
+  else
+    home = vim.env.HOME
+  end
+  if home and home ~= "" then
+    add_path(home .. "/grep_patterns")
+  end
+
+  local cwd = vim.fn.getcwd()
+  if cwd and cwd ~= "" then
+    add_path(cwd .. "/grep_patterns")
+  end
+
+  return paths
 end
 
 local function ensure_patterns_file(path)
@@ -28,19 +77,41 @@ local function ensure_patterns_file(path)
 end
 
 local function read_patterns()
-  local path = get_patterns_file()
-  if not ensure_patterns_file(path) then
-    return {}
+  local paths = get_patterns_file()
+  if vim.tbl_isempty(paths) then
+    return {}, ""
   end
-  local lines = vim.fn.readfile(path)
-  local patterns = {}
-  for _, line in ipairs(lines) do
-    local cleaned = trim(line)
-    if cleaned ~= "" and not starts_with(cleaned, "#") then
-      table.insert(patterns, cleaned)
+
+  local readable_paths = {}
+  for _, path in ipairs(paths) do
+    if vim.fn.filereadable(path) == 1 then
+      readable_paths[#readable_paths + 1] = path
     end
   end
-  return patterns, path
+
+  if vim.tbl_isempty(readable_paths) then
+    local primary = paths[1]
+    if not ensure_patterns_file(primary) then
+      return {}, primary
+    end
+    readable_paths = { primary }
+  end
+
+  local patterns = {}
+  local dedup = {}
+  for _, path in ipairs(readable_paths) do
+    local lines = vim.fn.readfile(path)
+    for _, line in ipairs(lines) do
+      local cleaned = trim(line)
+      if cleaned ~= "" and not starts_with(cleaned, "#") and not dedup[cleaned] then
+        dedup[cleaned] = true
+        table.insert(patterns, cleaned)
+      end
+    end
+  end
+
+  local display_path = table.concat(readable_paths, ", ")
+  return patterns, display_path
 end
 
 local function select_pattern(patterns, callback)
