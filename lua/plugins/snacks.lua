@@ -11,45 +11,43 @@ local logo = [[
 
 return {
   "snacks.nvim",
-  opts = function(_, opts)
-    opts.scroll = vim.tbl_deep_extend("force", opts.scroll or {}, {
+  opts = {
+    scroll = {
       enabled = not vim.g.is_windows,
-    })
-
-    opts.styles = opts.styles or {}
-    opts.styles.lazygit = vim.tbl_deep_extend("force", opts.styles.lazygit or {}, {
-      height = 0,
-      width = 0,
-      border = "none",
-    })
-
-    opts.terminal = opts.terminal or {}
-    opts.terminal.win = opts.terminal.win or {}
-    opts.terminal.win.wo = vim.tbl_deep_extend("force", opts.terminal.win.wo or {}, {
-      winbar = "",
-    })
-    opts.terminal.win.keys = vim.tbl_deep_extend("force", opts.terminal.win.keys or {}, {
-      hide_slash = { "<C-\\>", "hide", desc = "Hide Terminal", mode = { "t", "n" } },
-    })
-
-    opts.dashboard = opts.dashboard or {}
-    opts.dashboard.preset = opts.dashboard.preset or {}
-    local keys = opts.dashboard.preset.keys
-    if type(keys) ~= "table" then
-      keys = {}
-      opts.dashboard.preset.keys = keys
-    end
-    opts.dashboard.preset.header = logo
-
-    -- index, item
-    for _, item in ipairs(keys) do
-      if item.desc == "Recent Files" then
-        item.key = "."
-      elseif item.desc == "Restore Session" then
-        item.key = "r"
-      end
-    end
-  end,
+    },
+    styles = {
+      lazygit = {
+        height = 0,
+        width = 0,
+        border = "none",
+      },
+    },
+    terminal = {
+      win = {
+        wo = {
+          winbar = "",
+        },
+        keys = {
+          hide_slash = { "<C-\\>", "hide", desc = "Hide Terminal", mode = { "t", "n" } },
+        },
+      },
+    },
+    dashboard = {
+      preset = {
+        header = logo,
+        keys = {
+          { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+          { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+          { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+          { icon = " ", key = ".", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+          { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+          { icon = " ", key = "r", desc = "Restore Session", section = "session" },
+          { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+        },
+      },
+    },
+  },
   -- stylua: ignore
   keys = {
     { "<C-\\>",       function() Snacks.terminal() end, desc = "Toggle Terminal" },
