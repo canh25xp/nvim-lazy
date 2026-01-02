@@ -47,6 +47,20 @@ return {
         },
       },
     },
+    picker = {
+      sources = {
+        files = {
+          layout = {
+            fullscreen = true,
+          },
+        },
+        grep = {
+          layout = {
+            fullscreen = true,
+          },
+        },
+      },
+    },
   },
   -- stylua: ignore
   keys = {
