@@ -52,6 +52,16 @@ return {
             fullscreen = true,
           },
         },
+        explorer = {
+          win = {
+            list = {
+              keys = {
+                ["<A-h>"] = false,
+                ["<A-i>"] = false,
+              },
+            },
+          },
+        },
       },
     },
   },
