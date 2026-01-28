@@ -24,10 +24,6 @@ return {
         name = "BunniesDiary",
         path = "~/Documents/BunniesDiary",
       },
-      {
-        name = "IssueTracker",
-        path = "~/Documents/IssueTracker",
-      },
     },
     ui = {
       enable = false,
