@@ -1,4 +1,19 @@
 local ci_selector = require("common.ci_selector")
+local function send_line_to_terminal()
+  -- get the first snacks terminal
+  local terms = Snacks.terminal.list()
+  if #terms == 0 then
+    print("No terminal open")
+    return
+  end
+
+  local term = terms[1]
+  local chan = vim.b[term.buf].terminal_job_id
+
+  local line = vim.api.nvim_get_current_line()
+
+  vim.fn.chansend(chan, line .. "\n")
+end
 
 return {
   "snacks.nvim",
@@ -72,6 +87,7 @@ return {
     { "<leader>lf",   function() Snacks.terminal({ "lf" }, { win = { style = "lazygit" } }) end, desc = "List Files" },
     { "<leader>ya",   function() Snacks.terminal({ "yazi" }, { win = { style = "lazygit" } }) end, desc = "Yazi" },
     { "<leader>bt",   function() Snacks.terminal({ "btm" }, { win = { style = "lazygit" } }) end, desc = "Bottom" },
-    { "<leader>ci",   function() ci_selector.ci() end, desc = "Code Intelligent" }
+    { "<leader>ci",   function() ci_selector.ci() end, desc = "Code Intelligent" },
+    { "<leader>rr",   send_line_to_terminal, desc = "Run current line" }
   },
 }
