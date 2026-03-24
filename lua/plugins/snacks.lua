@@ -1,4 +1,29 @@
 local ci_selector = require("common.ci_selector")
+
+local function setup_terminal_exit_keymap(buf)
+  local terminal = vim.b[buf].snacks_terminal
+  local cmd = terminal and terminal.cmd
+
+  if type(cmd) == "table" then
+    cmd = cmd[1]
+  end
+
+  if type(cmd) == "string" then
+    cmd = vim.fn.fnamemodify(cmd, ":t")
+  end
+
+  -- Only map for shell terminals (no explicit command), not tool UIs like lazygit/btm/yazi.
+  if cmd ~= nil then
+    return
+  end
+
+  vim.keymap.set("t", "jk", "<C-\\><C-n>", {
+    buffer = buf,
+    desc = "Exit Terminal Mode",
+    silent = true,
+  })
+end
+
 local function send_line_to_terminal()
   -- get the first snacks terminal
   local terms = Snacks.terminal.list()
@@ -30,6 +55,9 @@ return {
     },
     terminal = {
       win = {
+        on_buf = function(self)
+          setup_terminal_exit_keymap(self.buf)
+        end,
         wo = {
           winbar = "",
         },
