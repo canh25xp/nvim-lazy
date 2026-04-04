@@ -38,27 +38,3 @@ map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 pcall(vim.keymap.del, "n", "<leader>l")
 map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Lazy" })
 map("n", "<leader>le", "<cmd>LazyExtras<cr>", { desc = "Lazy" })
-
-if vim.g.vscode then
-  -- Load nvim vscode specific key bindings
-  local vscode = require("vscode")
-  vim.keymap.set("n", "<leader>cf", function()
-    vscode.action("editor.action.formatDocument")
-  end)
-
-  vim.keymap.set("n", "<leader>gg", function()
-    vscode.action("workbench.view.scm")
-  end)
-
-  vim.keymap.set("n", "<leader>e", function()
-    vscode.action("workbench.view.explorer")
-  end)
-
-  vim.keymap.set("n", "<leader>E", function()
-    vscode.action("workbench.files.action.showActiveFileInExplorer")
-  end)
-
-  vim.keymap.set("n", "<leader>j", function()
-    vscode.action("workbench.action.togglePanel")
-  end)
-end
