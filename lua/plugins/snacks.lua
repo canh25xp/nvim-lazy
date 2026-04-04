@@ -17,11 +17,11 @@ local function setup_terminal_exit_keymap(buf)
     return
   end
 
-  vim.keymap.set("t", "jk", "<C-\\><C-n>", {
-    buffer = buf,
-    desc = "Exit Terminal Mode",
-    silent = true,
-  })
+  vim.keymap.set("t", "jk", "<C-\\><C-n>", { buffer = buf, desc = "Exit Terminal Mode", silent = true, })
+  vim.keymap.set("t", "<C-h>", [[<cmd>wincmd h<cr>]], { buffer = buf, desc = "Focus left" })
+  vim.keymap.set("t", "<C-l>", [[<cmd>wincmd l<cr>]], { buffer = buf, desc = "Focus right" })
+  vim.keymap.set("t", "<C-j>", [[<cmd>wincmd j<cr>]], { buffer = buf, desc = "Focus lower" })
+  vim.keymap.set("t", "<C-k>", [[<cmd>wincmd k<cr>]], { buffer = buf, desc = "Focus upper" })
 end
 
 local function send_line_to_terminal()
