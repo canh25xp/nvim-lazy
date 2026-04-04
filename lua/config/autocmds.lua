@@ -1,31 +1,78 @@
--- Autocmds are automatically loaded on the VeryLazy event
--- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
---
--- Add any additional autocmds here
--- with `vim.api.nvim_create_autocmd`
---
--- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
--- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+--  See `:help lua-guide-autocommands`
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+local map = vim.keymap.set
+local utils = require("common.utils")
 
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  pattern = "*.tmpl",
+local general = augroup("General Settings", { clear = true })
+
+if vim.g.dynamic_cmdheight then
+  autocmd({ "CmdlineEnter" }, {
+    group = augroup("Dynamic cmdheight", { clear = false }),
+    callback = function()
+      vim.opt.cmdheight = 1
+    end,
+    desc = "Change cmdheight when typing macro or command",
+  })
+  autocmd({ "CmdlineLeave" }, {
+    group = augroup("Dynamic cmdheight", { clear = false }),
+    callback = function()
+      vim.opt.cmdheight = 0
+    end,
+    desc = "Change cmdheight when leaving macro or command",
+  })
+end
+
+-- autocmd("TermOpen", { pattern = "term://*", command = "setlocal nonumber norelativenumber signcolumn=no" })
+-- autocmd("TermClose", { pattern = "term://*", command = "bdelete" })
+-- autocmd({ "TermOpen", "WinEnter" }, { pattern = "term://*", command = "startinsert", desc = "Auto insert in terminal" })
+
+autocmd("BufEnter", {
+  pattern = "",
   callback = function()
-    vim.api.nvim_create_user_command("TmplPreview", function()
-      local file = vim.api.nvim_buf_get_name(0)
-
-      if file == "" then
-        print("No file name detected.")
-        return
-      end
-
-      local watch_cmd = string.format([[clear; chezmoi execute-template -f %s]], file)
-      local cmd = string.format([[bash -c 'ls %s | entr -r sh -c "%s"']], file, watch_cmd)
-
-      print(cmd)
-
-      vim.cmd("vsplit | terminal " .. cmd)
-    end, { desc = "Watch and Execute current chezmoi template" })
-    vim.keymap.set("n", "<leader>ce", "<cmd>TmplPreview<cr>", { desc = "Chezmoi execute template" })
+    if vim.fn.argc() == 0 and vim.bo.filetype == "" then
+      map("n", "r", "<leader>qr", { desc = "Restore Session", buffer = 0, remap = true })
+    end
   end,
-  desc = "Auto-update chezmoi template output",
+})
+
+autocmd({ "VimResized" }, {
+  desc = "Resize splits if window got resized",
+  group = general,
+  callback = function()
+    local current_tab = vim.fn.tabpagenr()
+    vim.cmd("tabdo wincmd =")
+    vim.cmd("tabnext " .. current_tab)
+  end,
+})
+
+autocmd("TextYankPost", {
+  desc = "Highlight yanked text",
+  group = general,
+  callback = function()
+    vim.highlight.on_yank({ timeout = 200 })
+  end,
+})
+
+autocmd("BufEnter", {
+  pattern = { "*.md", "*.txt" },
+  callback = function()
+    vim.opt_local.spell = true
+  end,
+  group = general,
+  desc = "Enable spell checking",
+})
+
+autocmd("FileType", {
+  group = general,
+  pattern = {
+    "help",
+    "checkhealth",
+    "netrw",
+    "dap-float",
+  },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    map("n", "qq", "<cmd>close<cr>", { buffer = event.buf, silent = true, desc = "Quick Quit buffer" })
+  end,
 })

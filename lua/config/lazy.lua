@@ -17,19 +17,36 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
-    -- add LazyVim and import its plugins
-    {
-      "LazyVim/LazyVim",
-      import = "lazyvim.plugins",
-      opts = {
-        colorscheme = "catppuccin",
-      },
-    },
-    -- import/override with your plugins
-    { import = "lazyvim.plugins.extras.formatting.prettier" },
-    { import = "lazyvim.plugins.extras.lang.markdown" },
-    { import = "lazyvim.plugins.extras.util.chezmoi" },
-    { import = "plugins" },
+    { import = "plugins" }, -- Import all plugins in the plugins folder
+    -- { import = "plugins.catppuccin" },
+    -- { import = "plugins.treesitter" },
+    -- { import = "plugins.neo-tree" },
+    -- { import = "plugins.lsp" },
+    -- { import = "plugins.cmp" },
+    -- { import = "plugins.luaSnip" },
+    -- { import = "plugins.conform" },
+    -- { import = "plugins.dap" },
+    -- { import = "plugins.noice" },
+    -- { import = "plugins.lualine" },
+    -- { import = "plugins.dashboard" },
+    -- { import = "plugins.persistance" },
+    -- { import = "plugins.bufferline" },
+    -- { import = "plugins.autopairs" },
+    -- { import = "plugins.cmake-tools" },
+    -- { import = "plugins.fzf" },
+    -- { import = "plugins.gitsigns" },
+    -- { import = "plugins.mini" },
+    -- { import = "plugins.telescope" },
+    -- { import = "plugins.toggleterm" },
+    -- { import = "plugins.vim-sleuth" },
+    -- { import = "plugins.vimtex" },
+    -- { import = "plugins.chezmoi" },
+    -- { import = "plugins.lint" },
+    -- { import = "plugins.todo-comments" },
+    -- { import = "plugins.url-open" },
+    -- { import = "plugins.which-key" },
+    -- { import = "plugins.flatten" },
+    -- { import = "plugins.peek" },
   },
   lockfile = vim.fn.stdpath("config") .. "/.lazy-lock.json",
   defaults = {
