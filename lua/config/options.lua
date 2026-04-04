@@ -43,13 +43,13 @@ vim.opt.wildignore:prepend("*.o", "*.obj", "*.pyc")
 vim.opt.spelloptions = "camel"
 
 vim.opt.fillchars = {
-  horiz     = "-",
-  horizup   = "-",
-  horizdown = "-",
-  vert      = "|",
-  vertleft  = "|",
-  vertright = "|",
-  verthoriz = "+",
+  horiz = "━",
+  horizup = "┻",
+  horizdown = "┳",
+  vert = "┃",
+  vertleft = "┫",
+  vertright = "┣",
+  verthoriz = "╋",
 }
 
 if vim.g.is_windows then
