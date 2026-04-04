@@ -7,7 +7,7 @@ return {
   enabled = true,
   opts = {
     options = {
-      theme = "catppuccin",
+      theme = "auto",
       globalstatus = vim.o.laststatus == 3,
       disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter" } },
       component_separators = { left = "", right = "" },
