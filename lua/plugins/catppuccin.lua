@@ -8,17 +8,6 @@ return {
     {
       "<leader>ut",
       function()
-        if vim.g.colors_name == "catppuccin-mocha" then
-          vim.cmd.colorscheme("catppuccin-frappe")
-        else
-          vim.cmd.colorscheme("catppuccin-mocha")
-        end
-      end,
-      desc = "Toggle Theme",
-    },
-    {
-      "<leader>ub",
-      function()
         local cat = require("catppuccin")
         cat.options.transparent_background = not cat.options.transparent_background
         cat.compile()
