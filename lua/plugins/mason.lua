@@ -8,6 +8,7 @@ return {
   },
   opts = {
     ensure_installed = {
+      "arduino-language-server",
       "tree-sitter-cli",
       "bash-language-server",
       "black",
