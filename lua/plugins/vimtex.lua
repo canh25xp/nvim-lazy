@@ -1,5 +1,6 @@
 return {
   "lervag/vimtex",
+  enabled = false,
   lazy = false, -- lazy-loading will disable inverse search
   cond = function() return vim.fn.executable("latexmk") == 1 end,
   config = function()

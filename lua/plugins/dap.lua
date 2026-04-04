@@ -39,6 +39,7 @@ end
 return {
   {
     "mfussenegger/nvim-dap",
+    enabled = false,
     lazy = true,
     dependencies = {
       "rcarriga/nvim-dap-ui",
@@ -199,6 +200,7 @@ return {
   },
   {
     "rcarriga/nvim-dap-ui",
+    enabled = false,
     lazy = true,
     dependencies = {
       "nvim-neotest/nvim-nio",
@@ -266,6 +268,7 @@ return {
   },
   {
     "theHamsta/nvim-dap-virtual-text",
+    enabled = false,
     lazy = true,
     opts = {
       commented = false, -- prefix virtual text with comment string

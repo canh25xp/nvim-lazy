@@ -1,5 +1,6 @@
 return {
   "mfussenegger/nvim-lint",
+  enabled = false,
   cond = false,
   event = { "BufReadPre", "BufNewFile" },
   opts = {

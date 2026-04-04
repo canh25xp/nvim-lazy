@@ -1,5 +1,6 @@
 return {
   "MeanderingProgrammer/render-markdown.nvim",
+    enabled = false,
   opts = {
     code = {
       conceal_delimiters = true,

@@ -1,8 +1,7 @@
 return {
   {
     "github/copilot.vim",
-    enable = true,
-    cond = true,
+    enabled = false,
     cmd = "Copilot",
     build = ":Copilot auth",
     event = "InsertEnter",
@@ -22,7 +21,7 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    enable = true,
+    enabled = false,
     cmd = "CopilotChat",
     opts = {
       model = "claude-3.5-sonnet",
@@ -97,8 +96,7 @@ return {
   },
   {
     "zbirenbaum/copilot.lua",
-    enable = false,
-    cond = false,
+    enabled = false,
     cmd = "Copilot",
     build = ":Copilot auth",
     event = "BufEnter",

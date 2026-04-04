@@ -1,5 +1,6 @@
 return {
   "Civitasv/cmake-tools.nvim",
+  enabled = false,
   lazy = true,
   dev = false,
   init = function()

@@ -1,5 +1,6 @@
 return {
   "nvimtools/none-ls.nvim",
+  enabled = false,
   cond = not vim.g.is_windows,
   opts = function(_, opts)
     local null_ls = require("null-ls")

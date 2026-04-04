@@ -1,7 +1,7 @@
 return {
   {
     "folke/noice.nvim",
-    enabled = true,
+    enabled = false,
     cond = (not vim.g.is_windows) or vim.g.neovide == true,
     event = "VeryLazy",
     dependencies = {
@@ -59,7 +59,7 @@ return {
   },
   {
     "rcarriga/nvim-notify",
-    enabled = true,
+    enabled = false,
     cond = (not vim.g.is_windows) or vim.g.neovide == true,
     keys = {
       {

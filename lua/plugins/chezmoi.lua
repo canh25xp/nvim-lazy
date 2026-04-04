@@ -1,6 +1,7 @@
 return {
   {
     "alker0/chezmoi.vim",
+    enabled = false,
     init = function()
       vim.g["chezmoi#use_tmp_buffer"] = true
       vim.g["chezmoi#source_dir_path"] = vim.env.HOME .. "/.local/share/chezmoi"
@@ -8,6 +9,7 @@ return {
   },
   {
     "xvzc/chezmoi.nvim",
+    enabled = false,
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
       { "<leader>sz", require("common.utils").pick_chezmoi, desc = "Search chezmoi files" },

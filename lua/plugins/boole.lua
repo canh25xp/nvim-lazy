@@ -1,6 +1,6 @@
 return {
   "nat-418/boole.nvim",
-  enabled = true,
+  enabled = false,
   opts = {
     mappings = {
       increment = "<C-a>",
