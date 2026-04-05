@@ -67,7 +67,7 @@ end
 
 
 local function on_init(client, _)
-  if client.supports_method "textDocument/semanticTokens" then
+  if client:supports_method "textDocument/semanticTokens" then
     client.server_capabilities.semanticTokensProvider = nil
   end
 end
@@ -81,7 +81,7 @@ local function on_attach(client, bufnr)
     map({ "n", "x" }, "<leader>cF", function() lsp.buf.format({ async = true }) end, "Format")
   end
 
-  if client.supports_method(lsp.protocol.Methods.textDocument_inlayHint) then
+  if client:supports_method(lsp.protocol.Methods.textDocument_inlayHint) then
     map("n", "<leader>uh", function() lsp.inlay_hint.enable(not lsp.inlay_hint.is_enabled({})) end, "Toggle Inlay Hints")
   end
 
