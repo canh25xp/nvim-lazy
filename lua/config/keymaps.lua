@@ -75,10 +75,6 @@ map("n", "gs", function() vim.lsp.buf.signature_help() end, { desc = "Signature 
 map("n", "<leader>ca", function() vim.lsp.buf.code_action() end, { desc = "Code Action" })
 map("n", "<leader>cr", function() vim.lsp.buf.rename() end, { desc = "Rename" })
 
--- Better scroll
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-u>", "<C-u>zz")
-
 -- Better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
