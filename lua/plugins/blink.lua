@@ -23,6 +23,12 @@ return {
     keymap = {
       preset = "enter",
       ["<C-y>"] = { "select_and_accept" },
+
+      ["<C-u>"] = { "scroll_signature_up", "fallback" },
+      ["<C-d>"] = { "scroll_signature_down", "fallback" },
+
+      -- default in all keymap presets
+      ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
     },
 
     appearance = {
@@ -33,6 +39,8 @@ return {
 
     -- (Default) Only show the documentation popup when manually triggered
     completion = { documentation = { auto_show = false } },
+
+    signature = { enabled = true },
 
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
