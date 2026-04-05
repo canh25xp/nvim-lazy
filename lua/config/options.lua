@@ -42,6 +42,7 @@ vim.opt.list = true -- Display tabs, trailing spaces and non-breakable space cha
 vim.opt.wildignore:prepend("*.o", "*.obj", "*.pyc")
 vim.opt.spelloptions = "camel"
 vim.opt.foldlevel = 99
+vim.opt.exrc = true
 
 vim.opt.fillchars = {
   horiz = "━",
