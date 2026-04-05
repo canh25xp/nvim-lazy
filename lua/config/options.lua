@@ -41,6 +41,7 @@ vim.opt.splitbelow = true -- New splits should be opened below
 vim.opt.list = true -- Display tabs, trailing spaces and non-breakable space characters.
 vim.opt.wildignore:prepend("*.o", "*.obj", "*.pyc")
 vim.opt.spelloptions = "camel"
+vim.opt.foldlevel = 99
 
 vim.opt.fillchars = {
   horiz = "━",

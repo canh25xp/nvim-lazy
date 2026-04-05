@@ -93,7 +93,7 @@ return {
       disable = {},
     },
     fold = {
-      enable = { "lua" },
+      enable = true,
       disable = {},
     },
   },
