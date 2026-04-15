@@ -41,7 +41,7 @@ return {
       },
 
       lualine_x = {
-        { utils.macro_recording, color = { fg = "#ff9e64" }, separator = " " },
+        { utils.macro_recording, color = { fg = "#f5c2e7" }, separator = " " },
         -- stylua: ignore
         {
           function() return "  " .. require("dap").status() end,
