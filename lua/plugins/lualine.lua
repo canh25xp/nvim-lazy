@@ -12,7 +12,7 @@ return {
       globalstatus = vim.o.laststatus == 3,
       disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter" } },
     },
-    extensions = { "neo-tree", "lazy", "toggleterm", "mason", "nvim-dap-ui", "quickfix" },
+    extensions = { "lazy", "mason", "nvim-dap-ui", "quickfix" },
     sections = {
       lualine_a = { "mode" },
       lualine_b = {
