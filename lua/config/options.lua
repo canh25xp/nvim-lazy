@@ -34,5 +34,7 @@ if vim.g.neovide then
   vim.g.neovide_opacity = 1.0
 end
 
-vim.opt.clipboard = "unnamedplus"
-vim.g.clipboard = "osc52"
+if vim.env.SSH_CONNECTION then
+  vim.opt.clipboard = "unnamedplus"
+  vim.g.clipboard = "osc52"
+end
