@@ -33,3 +33,6 @@ if vim.g.neovide then
   vim.g.neovide_hide_mouse_when_typing = true
   vim.g.neovide_opacity = 1.0
 end
+
+vim.opt.clipboard = "unnamedplus"
+vim.g.clipboard = "osc52"
