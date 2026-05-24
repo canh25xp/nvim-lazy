@@ -1,6 +1,22 @@
 -- Native Neovim 0.12+ plugin manager using vim.pack.add
 local M = {}
 
+local start_time = vim.uv.hrtime()
+
+-- Mock lazy.stats for compatibility with plugins like snacks.nvim dashboard
+package.preload["lazy.stats"] = function()
+  return {
+    stats = function()
+      local elapsed_ms = (vim.uv.hrtime() - start_time) / 1e6
+      return {
+        count = M.active_count or 0,
+        loaded = M.active_count or 0,
+        startuptime = elapsed_ms,
+      }
+    end,
+  }
+end
+
 -- Helper to resolve GitHub shorthand repo names to full HTTPS URLs
 local function resolve_src(src)
   if not src or type(src) ~= "string" then
@@ -246,6 +262,7 @@ end
 function M.setup()
   -- Load and resolve all plugin specifications
   local active_specs = load_all_specs()
+  M.active_count = #active_specs
 
   -- Prepare specs for vim.pack.add
   local pack_specs = {}
