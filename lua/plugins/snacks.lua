@@ -88,6 +88,7 @@ return {
           { icon = " ", key = ".", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
           { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
           { icon = " ", key = "r", desc = "Restore Session", section = "session" },
+          { icon = "󰒲 ", key = "u", desc = "Update Plugins", action = ":lua vim.pack.update()" },
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
       },
