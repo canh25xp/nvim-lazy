@@ -17,6 +17,10 @@ vim.g.loaded_python3_provider = 0 -- Disable python provider
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
-require("config.lazy")
+if vim.fn.has("nvim-0.12") == 1 then
+  require("config.pack")
+else
+  require("config.lazy")
+end
 require("config.usercommands")
 require("config.lsp")
