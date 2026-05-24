@@ -17,8 +17,6 @@ vim.g.loaded_python3_provider = 0 -- Disable python provider
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
-
--- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 require("config.usercommands")
 require("config.lsp")

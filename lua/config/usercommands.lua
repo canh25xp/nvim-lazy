@@ -48,8 +48,8 @@ local function get_patterns_file()
   add_path(vim.fn.stdpath("config") .. "/grep_patterns")
 
   local home
-  if vim.loop and vim.loop.os_homedir then
-    home = vim.loop.os_homedir()
+  if vim.uv and vim.uv.os_homedir then
+    home = vim.uv.os_homedir()
   else
     home = vim.env.HOME
   end
