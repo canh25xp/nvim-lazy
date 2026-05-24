@@ -88,8 +88,8 @@ return {
           { icon = " ", key = ".", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
           { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
           { icon = " ", key = "r", desc = "Restore Session", section = "session" },
-          { icon = " ", key = "x", desc = "Lazy Extras", action = ":LazyExtras" },
-          { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
+          { icon = "󰒲 ", key = "p", desc = "Plugins", action = ":lua vim.pack.update(nil, { offline = true })" },
+          { icon = "󰚰 ", key = "u", desc = "Update Plugins", action = ":lua vim.pack.update()" },
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
       },
@@ -263,6 +263,7 @@ return {
 
         -- Override print to use snacks for `:=` command
         if vim.fn.has("nvim-0.11") == 1 then
+          ---@diagnostic disable-next-line: duplicate-set-field
           vim._print = function(_, ...)
             dd(...)
           end
