@@ -18,7 +18,6 @@ return {
       "vtsls",
       "html-lsp",
       "isort",
-      "jdtls",
       "json-lsp",
       "latexindent",
       "lua-language-server",
