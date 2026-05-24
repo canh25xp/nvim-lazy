@@ -73,7 +73,7 @@ return {
       if #to_install > 0 then
         vim.notify("Installing Mason packages: " .. table.concat(to_install, ", "), vim.log.levels.INFO)
       else
-        vim.notify("All Mason packages are already installed (" .. installed_package .. ")", vim.log.levels.INFO)
+        vim.notify("All Mason packages are already installed (" .. #installed_package .. ")", vim.log.levels.INFO)
       end
     end, { desc = "Install all Mason ensured packages" })
   end,
