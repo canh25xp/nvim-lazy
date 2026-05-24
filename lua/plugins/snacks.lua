@@ -17,7 +17,7 @@ local function setup_terminal_exit_keymap(buf)
     return
   end
 
-  vim.keymap.set("t", "jk", "<C-\\><C-n>", { buffer = buf, desc = "Exit Terminal Mode", silent = true, })
+  vim.keymap.set("t", "jk", "<C-\\><C-n>", { buffer = buf, desc = "Exit Terminal Mode", silent = true })
   vim.keymap.set("t", "<C-h>", [[<cmd>wincmd h<cr>]], { buffer = buf, desc = "Focus left" })
   vim.keymap.set("t", "<C-l>", [[<cmd>wincmd l<cr>]], { buffer = buf, desc = "Focus right" })
   vim.keymap.set("t", "<C-j>", [[<cmd>wincmd j<cr>]], { buffer = buf, desc = "Focus lower" })
@@ -139,10 +139,11 @@ return {
         border = "none",
       },
       notification = {
-        wo = { wrap = true } -- Wrap notifications
-      }
+        wo = { wrap = true }, -- Wrap notifications
+      },
     },
   },
+  -- stylua: ignore
   keys = {
     -- Top Pickers & Explorer
     { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
@@ -266,7 +267,7 @@ return {
             dd(...)
           end
         else
-          vim.print = _G.dd 
+          vim.print = _G.dd
         end
 
         -- Create some toggle mappings

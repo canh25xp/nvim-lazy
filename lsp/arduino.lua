@@ -1,4 +1,5 @@
 return {
+  -- stylua: ignore
   cmd = {
     "arduino-language-server",
     "-cli-config", vim.fn.expand(vim.g.is_windows and "~/AppData/Local/Arduino15/arduino-cli.yaml" or "~/.arduino15/arduino-cli.yaml"),

@@ -66,6 +66,7 @@ map("n", "]h", utils.diagnostic_goto(1, vim.diagnostic.severity.HINT), { desc = 
 map("n", "[h", utils.diagnostic_goto(-1, vim.diagnostic.severity.HINT), { desc = "Prev Hint" })
 
 -- Lsp
+-- stylua: ignore start
 map("n", "gd", function() vim.lsp.buf.definition({ reuse_win = true }) end, { desc = "Goto Definition" })
 map("n", "gD", function() vim.lsp.buf.declaration({ reuse_win = true }) end, { desc = "Goto Declaration" })
 map("n", "gI", function() vim.lsp.buf.implementation({ reuse_win = true }) end, { desc = "Goto Implementation" })
@@ -74,6 +75,7 @@ map("n", "gr", function() vim.lsp.buf.references() end, { desc = "Goto Reference
 map("n", "gs", function() vim.lsp.buf.signature_help() end, { desc = "Signature help" })
 map("n", "<leader>ca", function() vim.lsp.buf.code_action() end, { desc = "Code Action" })
 map("n", "<leader>cr", function() vim.lsp.buf.rename() end, { desc = "Rename" })
+-- stylua: ignore end
 
 -- Better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
