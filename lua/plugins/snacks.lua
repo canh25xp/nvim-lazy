@@ -78,6 +78,11 @@ return {
       end,
     },
     dashboard = {
+      -- Default sections include "startup", which requires lazy.nvim
+      sections = {
+        { section = "header" },
+        { section = "keys",  gap = 1, padding = 1 },
+      },
       preset = {
         -- stylua: ignore
         ---@type snacks.dashboard.Item[]
