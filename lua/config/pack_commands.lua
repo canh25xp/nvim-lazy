@@ -155,42 +155,7 @@ function M.pack_upgrade(name, bang)
 end
 
 function M.pack_list()
-  local ok, plugins = pcall(vim.pack.get)
-  if not ok or not plugins then
-    notify("PackList failed: " .. tostring(plugins), vim.log.levels.ERROR)
-    return
-  end
-
-  table.sort(plugins, function(a, b)
-    return a.spec.name < b.spec.name
-  end)
-
-  local lock_versions = read_lockfile_versions()
-  local lines = {
-    string.format("%-22s %-7s %-10s %-8s %s", "name", "active", "rev", "version", "src"),
-    string.rep("-", 100),
-  }
-
-  for _, p in ipairs(plugins) do
-    local name = p.spec.name
-    local rev = (p.rev or ""):sub(1, 10)
-    local active = p.active and "yes" or "no"
-    local version = lock_versions[name] or ""
-    local src = p.spec.src or ""
-    lines[#lines + 1] = string.format("%-22s %-7s %-10s %-8s %s", name, active, rev, version, src)
-  end
-
-  lines[#lines + 1] = ""
-  lines[#lines + 1] = (#plugins) .. " plugin(s). Lockfile: nvim-pack-lock.json"
-
-  local buf = vim.api.nvim_create_buf(false, true)
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-  vim.bo[buf].buftype = "nofile"
-  vim.bo[buf].bufhidden = "wipe"
-  vim.bo[buf].swapfile = false
-  vim.bo[buf].modifiable = false
-  vim.api.nvim_set_current_buf(buf)
-  vim.cmd("file pack://list")
+  vim.pack.update(nil, { offline = true })
 end
 
 function M.pack_clean()
