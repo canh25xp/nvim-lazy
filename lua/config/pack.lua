@@ -144,7 +144,7 @@ normalize_spec = function(raw, seen)
     opts = raw.opts,
     config = raw.config,
     init = raw.init,
-    build = raw.build,
+    build = raw.build, -- build is ignored
     keys = raw.keys,
     main = raw.main,
   }
@@ -253,23 +253,6 @@ local function register_keys(spec)
   end
 end
 
-local function run_build(spec)
-  if spec.build == nil then
-    return
-  end
-  if type(spec.build) == "string" then
-    local ok, err = pcall(spec.build, spec)
-    if not ok then
-      vim.notify("build failed for " .. spec.name .. ": " .. tostring(err), vim.log.levels.ERROR)
-    end
-  elseif type(spec.build) == "function" then
-    local ok, err = pcall(vim.fn.system, spec.build)
-    if not ok then
-      vim.notify("build failed for " .. spec.name .. ": " .. tostring(err), vim.log.levels.ERROR)
-    end
-  end
-end
-
 function M.setup(opts)
   opts = opts or {}
   local performance = opts.performance or {}
@@ -282,16 +265,6 @@ function M.setup(opts)
   for _, spec in ipairs(M.specs) do
     run_init(spec)
   end
-
-  -- Track plugins installed this session (lockfile sync or fresh clone).
-  local installed = {}
-  vim.api.nvim_create_autocmd("PackChanged", {
-    callback = function(ev)
-      if ev.data.kind == "install" then
-        installed[ev.data.spec.name] = true
-      end
-    end,
-  })
 
   local pack_specs = {}
   for _, spec in ipairs(M.specs) do
@@ -312,9 +285,6 @@ function M.setup(opts)
   for _, spec in ipairs(M.specs) do
     run_config(spec)
     register_keys(spec)
-    if installed[spec.name] then
-      run_build(spec)
-    end
   end
 
   vim.api.nvim_create_autocmd("UIEnter", {
