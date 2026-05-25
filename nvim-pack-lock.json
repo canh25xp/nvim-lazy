@@ -11,12 +11,12 @@
       "version": ">=0.0.0"
     },
     "catppuccin": {
-      "rev": "8edd468af4d63212b84d69b2ddb5ffc9023ef5eb",
+      "rev": "605b4603797de970e9f3a4238c199c850da03186",
       "src": "https://github.com/catppuccin/nvim",
       "version": ">=0.0.0"
     },
     "conform.nvim": {
-      "rev": "24c70347f6b2128679f47d2eb765156ef34bf9e0",
+      "rev": "3543d000dafbc41cc7761d860cfdb24e82154f75",
       "src": "https://github.com/stevearc/conform.nvim",
       "version": ">=0.0.0"
     },
@@ -34,7 +34,7 @@
       "src": "https://github.com/folke/lazydev.nvim"
     },
     "lualine.nvim": {
-      "rev": "131a558e13f9f28b15cd235557150ccb23f89286",
+      "rev": "c55af3b39cc50109aa75d445e38f2089b023e5df",
       "src": "https://github.com/nvim-lualine/lualine.nvim",
       "version": ">=0.0.0"
     },
@@ -47,12 +47,12 @@
       "src": "https://github.com/williamboman/mason.nvim"
     },
     "mini.nvim": {
-      "rev": "44657837c7338e52727facc85c1d95bec1f6bd7c",
+      "rev": "a995fe9cd4193fb492b5df69175a351a74b3d36b",
       "src": "https://github.com/echasnovski/mini.nvim",
       "version": ">=0.0.0"
     },
     "nvim-lspconfig": {
-      "rev": "a4ed4e761c400849e8c9f8bda33e5083f890268c",
+      "rev": "f6738ef65dabade340b473d4ff2a1ad3352c10e7",
       "src": "https://github.com/neovim/nvim-lspconfig",
       "version": ">=0.0.0"
     },
@@ -65,17 +65,17 @@
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "persistence.nvim": {
-      "rev": "b20b2a7887bd39c1a356980b45e03250f3dce49c",
+      "rev": "c45ff862b53ce07a853a753fb0b33e148dbb99d2",
       "src": "https://github.com/folke/persistence.nvim",
       "version": ">=0.0.0"
     },
     "snacks.nvim": {
-      "rev": "0770753c88228f7f15449c6a5b242e3f7cd0d71c",
+      "rev": "e6fd58c82f2f3fcddd3fe81703d47d6d48fc7b9f",
       "src": "https://github.com/folke/snacks.nvim",
       "version": ">=0.0.0"
     },
     "vim-tmux-navigator": {
-      "rev": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432",
+      "rev": "85b8e5f60c1690cde57dbb66467ce39cd1b63343",
       "src": "https://github.com/christoomey/vim-tmux-navigator",
       "version": ">=0.0.0"
     }
