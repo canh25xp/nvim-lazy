@@ -258,12 +258,12 @@ local function run_build(spec)
     return
   end
   if type(spec.build) == "string" then
-    local ok, err = pcall(vim.cmd, spec.build)
+    local ok, err = pcall(spec.build, spec)
     if not ok then
       vim.notify("build failed for " .. spec.name .. ": " .. tostring(err), vim.log.levels.ERROR)
     end
   elseif type(spec.build) == "function" then
-    local ok, err = pcall(spec.build, spec)
+    local ok, err = pcall(vim.fn.system, spec.build)
     if not ok then
       vim.notify("build failed for " .. spec.name .. ": " .. tostring(err), vim.log.levels.ERROR)
     end
@@ -284,11 +284,11 @@ function M.setup(opts)
   end
 
   -- Track plugins installed this session (lockfile sync or fresh clone).
-  local installed_this_session = {}
+  local installed = {}
   vim.api.nvim_create_autocmd("PackChanged", {
     callback = function(ev)
       if ev.data.kind == "install" then
-        installed_this_session[ev.data.spec.name] = true
+        installed[ev.data.spec.name] = true
       end
     end,
   })
@@ -312,7 +312,7 @@ function M.setup(opts)
   for _, spec in ipairs(M.specs) do
     run_config(spec)
     register_keys(spec)
-    if installed_this_session[spec.name] then
+    if installed[spec.name] then
       run_build(spec)
     end
   end
