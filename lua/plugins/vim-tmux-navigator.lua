@@ -1,6 +1,7 @@
 return {
   "christoomey/vim-tmux-navigator",
   enabled = true,
+  version = "*",
   cond = not vim.g.is_windows,
   init = function()
     vim.g.tmux_navigator_no_mappings = 1

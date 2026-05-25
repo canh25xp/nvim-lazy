@@ -40,7 +40,6 @@ end
 return {
   "nvim-treesitter/nvim-treesitter",
   lazy = false,
-  version = false,
   build = ":TSUpdate",
   opts = {
     ensure_installed = {

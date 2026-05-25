@@ -43,6 +43,7 @@ end
 return {
   "folke/snacks.nvim",
   enabled = true,
+  version = "*",
   priority = 1000,
   lazy = false,
   ---@type snacks.Config

@@ -2,7 +2,7 @@ return {
   "saghen/blink.cmp",
   enabled = true,
   dependencies = { "rafamadriz/friendly-snippets" },
-  version = "1.*", -- use a release tag to download pre-built binaries
+  version = "*", -- use a release tag to download pre-built binaries
   -- build = 'cargo build --release', AND/OR build from source
 
   ---@module 'blink.cmp'
