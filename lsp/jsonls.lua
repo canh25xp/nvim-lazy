@@ -1,7 +1,9 @@
 return {
   on_init = function(client)
-    client.config.settings.json = vim.tbl_deep_extend("force", client.config.settings.json, {
-      schemas = require("schemastore").json.schemas(),
+    local ok, schemastore = pcall(require, "schemastore")
+
+    client.config.settings.json = vim.tbl_deep_extend("force", client.config.settings.json or {}, {
+      schemas = ok and schemastore.json.schemas() or {},
       validate = { enable = true },
     })
   end,
