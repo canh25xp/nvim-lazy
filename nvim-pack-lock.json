@@ -34,9 +34,8 @@
       "src": "https://github.com/folke/lazydev.nvim"
     },
     "lualine.nvim": {
-      "rev": "c55af3b39cc50109aa75d445e38f2089b023e5df",
-      "src": "https://github.com/nvim-lualine/lualine.nvim",
-      "version": ">=0.0.0"
+      "rev": "131a558e13f9f28b15cd235557150ccb23f89286",
+      "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "luvit-meta": {
       "rev": "cc9b2d412d2fbd30b94a70cfc214c2a3be27a0a2",

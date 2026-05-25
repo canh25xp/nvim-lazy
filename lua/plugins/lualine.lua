@@ -5,7 +5,6 @@ local icons = ui.icons
 return {
   "nvim-lualine/lualine.nvim",
   enabled = true,
-  version = "*",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
     options = {
