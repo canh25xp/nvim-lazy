@@ -36,14 +36,9 @@ map("n", "<leader>0", [["0p"]], { desc = "Paste last yank" })
 map("n", "<leader>e", "<cmd>Lexplore<cr>", { desc = "Netrw Explorer (root)" })
 map("n", "<leader>E", "<cmd>Lexplore %:p:h<cr>", { desc = "Netrw Explorer (cwd)" })
 
--- Plugin manager
-if vim.fn.has("nvim-0.12") == 1 then
-  map("n", "<leader>lz", "<cmd>ZPack<cr>", { desc = "Plugin Manager" })
-  map("n", "<leader>lu", "<cmd>ZPack update<cr>", { desc = "Update Plugins" })
-else
-  map("n", "<leader>ll", utils.lazy_load, { desc = "Load Lazy Plugins" })
-  map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Lazy" })
-end
+-- Lazy
+map("n", "<leader>ll", utils.lazy_load, { desc = "Load Lazy Plugins" })
+map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- Sessions
 map("n", "<leader>qr", "<cmd>source Session.vim<cr>", { desc = "Restore Session" })
@@ -166,12 +161,10 @@ map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 -- map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 -- map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
--- Plugin manager (duplicate section kept for leader>l prefix cleanup)
+-- Lazy
 pcall(vim.keymap.del, "n", "<leader>l")
-if vim.fn.has("nvim-0.12") ~= 1 then
-  map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Lazy" })
-  map("n", "<leader>le", "<cmd>LazyExtras<cr>", { desc = "Lazy Extras" })
-end
+map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>le", "<cmd>LazyExtras<cr>", { desc = "Lazy" })
 -- windows
 map("n", "<leader>-", "<C-w>s", { desc = "Split Window Below", remap = true })
 map("n", "<leader>\\", "<C-w>v", { desc = "Split Window Right", remap = true })

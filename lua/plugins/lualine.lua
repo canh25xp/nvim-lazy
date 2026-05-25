@@ -5,15 +5,14 @@ local icons = ui.icons
 return {
   "nvim-lualine/lualine.nvim",
   enabled = true,
-  version = "*",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+  dependencies = { "nvim-tree/nvim-web-devicons", version = false },
   opts = {
     options = {
       theme = "auto",
       globalstatus = vim.o.laststatus == 3,
       disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter" } },
     },
-    extensions = { "mason", "nvim-dap-ui", "quickfix" },
+    extensions = { "lazy", "mason", "nvim-dap-ui", "quickfix" },
     sections = {
       lualine_a = { "mode" },
       lualine_b = {

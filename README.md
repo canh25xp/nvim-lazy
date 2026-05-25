@@ -7,15 +7,6 @@ git clone https://github.com/canh25xp/nvim -b minimal ~/.config/nvim-mini
 export NVIM_APPNAME=nvim-mini
 ```
 
-## Plugin manager
-
-- **Neovim 0.12+**: [zpack.nvim](https://github.com/zuqini/zpack.nvim) on native `vim.pack`. Specs live in `lua/plugins/`. Lockfile: `nvim-pack-lock.json`. Commands: `:ZPack`, `:ZPack update`, `:ZPack build`.
-- **Neovim &lt; 0.12**: [lazy.nvim](https://github.com/folke/lazy.nvim) fallback with the same `lua/plugins/` specs. Lockfile: `.lazy-lock.json`.
-
-Plugins without an explicit `version` use `version = "*"` (latest stable semver where supported). `treesitter` and `lazydev` track the default branch.
-
-Keymaps: `<leader>lz` opens the plugin manager; `<leader>lu` updates plugins (0.12+ only).
-
 ## Notes
 
 ### To rebuild spell file
