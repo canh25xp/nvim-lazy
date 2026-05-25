@@ -1,256 +1,236 @@
 -- Native Neovim 0.12+ plugin manager using vim.pack.add
 local M = {}
 
--- Helper to resolve GitHub shorthand repo names to full HTTPS URLs
+local DEFAULT_PRIORITY = 50
+
 local function resolve_src(src)
-  if not src or type(src) ~= "string" then
+  if type(src) ~= "string" then
     return nil
   end
-  if not src:match("^http") and not src:match("^git@") then
+  if not src:match("^https?://") and not src:match("^git@") then
     return "https://github.com/" .. src
   end
   return src
 end
 
--- Helper to extract the repository name from a source URL
-local function get_repo_name(src)
-  if not src then
-    return ""
-  end
-  return src:match("([^/]+)$"):gsub("%.git$", "")
+local function repo_name(src)
+  return (src:match("([^/]+)$") or ""):gsub("%.git$", "")
 end
 
--- Helper to resolve version constraints to vim.VersionRange if applicable
-local function resolve_version(version)
-  if type(version) == "string" then
-    if version == "*" or version:match("[%*%^%~%><=]") then
-      local ok, range = pcall(vim.version.range, version)
-      if ok then
-        return range
-      end
-    end
-  end
-  if version == false then
-    return nil -- lazy.nvim version = false means default branch
-  end
-  return version
-end
-
--- Helper to evaluate if a plugin is enabled based on enabled/cond fields
 local function is_enabled(spec)
   if spec.enabled == false then
     return false
   end
-  if type(spec.enabled) == "function" then
-    if not spec.enabled(spec) then
-      return false
-    end
+  if type(spec.enabled) == "function" and not spec.enabled(spec) then
+    return false
   end
   if spec.cond == false then
     return false
   end
-  if type(spec.cond) == "function" then
-    if not spec.cond(spec) then
-      return false
-    end
+  if type(spec.cond) == "function" and not spec.cond(spec) then
+    return false
   end
   return true
 end
 
--- Recursively gather all plugin specs and their dependencies
-local function gather_specs(spec, all_specs, seen)
-  if type(spec) ~= "table" then
+local function resolve_version(version)
+  if version == false or version == nil then
+    return nil
+  end
+  if type(version) == "string" and (version == "*" or version:match("[%*%^%~%><=]")) then
+    local ok, range = pcall(vim.version.range, version)
+    if ok then
+      return range
+    end
+  end
+  return version
+end
+
+local function normalize_spec(raw, seen)
+  if type(raw) == "string" then
+    raw = { raw }
+  end
+  if type(raw) ~= "table" then
     return
   end
 
-  -- If it's a list-like spec (multiple specs returned in one file)
-  if type(spec[1]) == "table" or (#spec > 0 and type(spec[1]) ~= "string") then
-    for _, s in ipairs(spec) do
-      gather_specs(s, all_specs, seen)
+  if type(raw[1]) == "table" or (#raw > 0 and type(raw[1]) ~= "string") then
+    for _, item in ipairs(raw) do
+      normalize_spec(item, seen)
     end
     return
   end
 
-  -- Single spec
-  if not is_enabled(spec) then
+  if not is_enabled(raw) then
     return
   end
 
-  local src = spec[1] or spec.src
+  local src = resolve_src(raw[1] or raw.src)
   if not src then
     return
   end
 
-  src = resolve_src(src)
-  local name = spec.name or get_repo_name(src)
+  local name = raw.name or repo_name(src)
   if name == "" then
     return
   end
 
   if seen[name] then
-    -- Merge specifications if we've seen it (e.g. from dependencies and main list)
-    local existing = all_specs[name]
-    existing.enabled = existing.enabled ~= false and spec.enabled ~= false
-    existing.cond = existing.cond ~= false and spec.cond ~= false
-    if spec.opts then
-      existing.opts = vim.tbl_deep_extend("force", existing.opts or {}, spec.opts or {})
-    end
-    if spec.config then
-      existing.config = spec.config
-    end
-    if spec.keys then
-      existing.keys = existing.keys or {}
-      vim.list_extend(existing.keys, spec.keys)
-    end
     return
   end
+  seen[name] = true
 
-  local normalized = {
+  local spec = {
     src = src,
     name = name,
-    version = resolve_version(spec.version),
-    enabled = spec.enabled,
-    cond = spec.cond,
-    opts = spec.opts,
-    config = spec.config,
-    keys = spec.keys,
-    init = spec.init,
-    main = spec.main,
-    dependencies = spec.dependencies,
+    version = resolve_version(raw.version),
+    priority = raw.priority or DEFAULT_PRIORITY,
+    opts = raw.opts,
+    config = raw.config,
+    init = raw.init,
+    build = raw.build,
+    keys = raw.keys,
+    main = raw.main,
   }
 
-  seen[name] = true
-  all_specs[name] = normalized
+  table.insert(M.specs, spec)
 
-  -- Process dependencies recursively
-  if spec.dependencies then
-    local deps = spec.dependencies
-    if type(deps) == "string" then
-      deps = { deps }
-    end
-    if type(deps) == "table" then
-      for _, dep in ipairs(deps) do
-        if type(dep) == "string" then
-          gather_specs({ dep }, all_specs, seen)
-        else
-          gather_specs(dep, all_specs, seen)
-        end
-      end
+  local deps = raw.dependencies
+  if type(deps) == "string" then
+    deps = { deps }
+  end
+  if type(deps) == "table" then
+    for _, dep in ipairs(deps) do
+      normalize_spec(dep, seen)
     end
   end
 end
 
--- Load all specs from the lua/plugins directory
-local function load_all_specs()
-  local all_specs = {}
+local function load_specs()
+  M.specs = {}
   local seen = {}
-
   local plugins_dir = vim.fn.stdpath("config") .. "/lua/plugins"
-
-  -- Use vim.fs.dir to safely list directory contents
   local ok, entries = pcall(vim.fs.dir, plugins_dir)
   if not ok then
     vim.notify("Could not read plugins directory: " .. tostring(entries), vim.log.levels.ERROR)
-    return {}
+    return
   end
 
-  for name, type in entries do
-    if type == "file" and name:match("%.lua$") then
+  for name, typ in entries do
+    if typ == "file" and name:match("%.lua$") then
       local modname = "plugins." .. name:sub(1, -5)
       local ok_req, spec = pcall(require, modname)
       if ok_req then
-        gather_specs(spec, all_specs, seen)
+        normalize_spec(spec, seen)
       else
-        vim.notify("Failed to load plugin config " .. modname .. ": " .. tostring(spec), vim.log.levels.WARN)
+        vim.notify("Failed to load " .. modname .. ": " .. tostring(spec), vim.log.levels.WARN)
       end
     end
   end
 
-  -- Filter and only return enabled specs
-  local active_specs = {}
-  for _, spec in pairs(all_specs) do
-    if is_enabled(spec) then
-      table.insert(active_specs, spec)
-    end
-  end
-
-  return active_specs
+  table.sort(M.specs, function(a, b)
+    return a.priority > b.priority
+  end)
 end
 
--- Guess the main module name to require for default setup
-local function get_main_module(spec)
+local function main_module(spec)
   if spec.main then
     return spec.main
   end
-  local name = spec.name or get_repo_name(spec.src)
-  return name:gsub("%.nvim$", ""):gsub("%.lua$", "")
+  return spec.name:gsub("%.nvim$", ""):gsub("%.lua$", "")
 end
 
--- Run keybindings for a spec
-local function register_keys(spec)
-  if type(spec.keys) ~= "table" then
-    return
-  end
-  for _, key in ipairs(spec.keys) do
-    local lhs = key[1]
-    local rhs = key[2]
-    if lhs and rhs then
-      local opts = { desc = key.desc }
-      for k, v in pairs(key) do
-        if type(k) == "string" and k ~= "mode" and k ~= "desc" then
-          opts[k] = v
-        end
-      end
-      local mode = key.mode or "n"
-      vim.keymap.set(mode, lhs, rhs, opts)
-    end
-  end
-end
-
--- Initialize and run config for an active spec
-local function run_config(spec)
-  -- Run init hook if defined
-  if type(spec.init) == "function" then
-    pcall(spec.init)
-  end
-
-  -- Register keymaps
-  register_keys(spec)
-
-  -- Resolve opts
+local function resolve_opts(spec)
   local opts = spec.opts or {}
   if type(opts) == "function" then
     opts = opts(spec, {}) or {}
   end
+  return opts
+end
 
-  -- Run config function or automatic fallback
+local function run_init(spec)
+  if type(spec.init) == "function" then
+    pcall(spec.init, spec)
+  end
+end
+
+local function run_config(spec)
+  local opts = resolve_opts(spec)
   if type(spec.config) == "function" then
     local ok, err = pcall(spec.config, spec, opts)
     if not ok then
-      vim.notify("Error in config for " .. spec.name .. ": " .. tostring(err), vim.log.levels.ERROR)
+      vim.notify("config failed for " .. spec.name .. ": " .. tostring(err), vim.log.levels.ERROR)
     end
-  elseif spec.config == true or (spec.config == nil and spec.opts ~= nil) then
-    local main = get_main_module(spec)
-    if main ~= "" then
-      local ok, mod = pcall(require, main)
-      if ok and type(mod) == "table" and type(mod.setup) == "function" then
-        local ok_setup, err = pcall(mod.setup, opts)
-        if not ok_setup then
-          vim.notify("Error running setup for " .. main .. ": " .. tostring(err), vim.log.levels.ERROR)
-        end
-      end
+    return
+  end
+
+  if spec.config == false then
+    return
+  end
+
+  if spec.config == nil and spec.opts == nil then
+    return
+  end
+
+  local main = main_module(spec)
+  if main == "" then
+    return
+  end
+
+  local ok, mod = pcall(require, main)
+  if ok and type(mod) == "table" and type(mod.setup) == "function" then
+    local ok_setup, err = pcall(mod.setup, opts)
+    if not ok_setup then
+      vim.notify("setup failed for " .. main .. ": " .. tostring(err), vim.log.levels.ERROR)
     end
   end
 end
 
-function M.setup()
-  -- Load and resolve all plugin specifications
-  local active_specs = load_all_specs()
-  M.active_count = #active_specs
+local function register_keys(spec)
+  if type(spec.keys) ~= "table" then
+    return
+  end
 
-  -- Prepare specs for vim.pack.add
+  for _, key in ipairs(spec.keys) do
+    local lhs, rhs = key[1], key[2]
+    if lhs and rhs then
+      local map_opts = { desc = key.desc }
+      for k, v in pairs(key) do
+        if type(k) == "string" and k ~= "mode" and k ~= "desc" then
+          map_opts[k] = v
+        end
+      end
+      vim.keymap.set(key.mode or "n", lhs, rhs, map_opts)
+    end
+  end
+end
+
+local function run_build(spec)
+  if spec.build == nil then
+    return
+  end
+  if type(spec.build) == "string" then
+    pcall(vim.cmd, spec.build)
+  elseif type(spec.build) == "function" then
+    pcall(spec.build, spec)
+  end
+end
+
+function M.setup(opts)
+  opts = opts or {}
+  local performance = opts.performance or {}
+  if performance.vim_loader ~= false then
+    vim.loader.enable()
+  end
+
+  load_specs()
+
+  for _, spec in ipairs(M.specs) do
+    run_init(spec)
+  end
+
   local pack_specs = {}
-  for _, spec in ipairs(active_specs) do
+  for _, spec in ipairs(M.specs) do
     table.insert(pack_specs, {
       src = spec.src,
       name = spec.name,
@@ -259,17 +239,24 @@ function M.setup()
   end
 
   if #pack_specs > 0 then
-    -- Native pack.add is synchronous and returns/loads everything cleanly
-    local ok, err = pcall(vim.pack.add, pack_specs)
+    local ok, err = pcall(vim.pack.add, pack_specs, { confirm = false, load = true })
     if not ok then
-      vim.notify("Error during native vim.pack.add: " .. tostring(err), vim.log.levels.ERROR)
+      vim.notify("vim.pack.add failed: " .. tostring(err), vim.log.levels.ERROR)
     end
   end
 
-  -- Configure all active plugins
-  for _, spec in ipairs(active_specs) do
+  for _, spec in ipairs(M.specs) do
     run_config(spec)
+    register_keys(spec)
+    run_build(spec)
   end
+
+  vim.api.nvim_create_autocmd("UIEnter", {
+    once = true,
+    callback = function()
+      vim.api.nvim_exec_autocmds("User", { pattern = "VeryLazy" })
+    end,
+  })
 end
 
 M.setup()
