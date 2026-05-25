@@ -26,3 +26,9 @@ nvim --headless +q
 ```bash
 nvim --headless .nvim.lua +trust +q
 ```
+
+## References
+
+- [Migrating from lazy.nvim to vim.pack](https://yeripratama.com/blog/migrating-from-lazynvim-to-vimpack/)
+- [From lazy.nvim to vim.pack](https://fredrikaverpil.github.io/blog/2026/04/15/from-lazy.nvim-to-vim.pack/#what-can-vimpack-do-out-of-the-box)
+- [zpack - thin layer over native 'vim.pack`, adding support for lazy-loading and lazy.nvim specs](https://github.com/zuqini/zpack.nvim)
