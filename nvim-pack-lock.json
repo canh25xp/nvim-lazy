@@ -62,10 +62,6 @@
       "rev": "b20b2a7887bd39c1a356980b45e03250f3dce49c",
       "src": "https://github.com/folke/persistence.nvim"
     },
-    "schemaStore.nvim": {
-      "rev": "68ba9015c0cc77a0fe954bd2578dfa7a5c24134f",
-      "src": "https://github.com/b0o/schemaStore.nvim"
-    },
     "snacks.nvim": {
       "rev": "0770753c88228f7f15449c6a5b242e3f7cd0d71c",
       "src": "https://github.com/folke/snacks.nvim"
