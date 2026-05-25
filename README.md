@@ -33,6 +33,22 @@ nvim --headless .nvim.lua +trust +q
 nvim --headless --noplugin "+help pack.txt" "+%print" +qa!
 ```
 
+### Pack commands
+
+Plugin management helpers (wrap native `vim.pack`):
+
+| Command | Description |
+|---------|-------------|
+| `:PackAdd {user/repo}` | Install and load a plugin (does not create `lua/plugins/` specs) |
+| `:PackRemove {name}` | Delete a plugin from disk |
+| `:PackRestore [name]` | Restore to `nvim-pack-lock.json` (all plugins if no name) |
+| `:PackUpgrade [name]` | Update plugins (all if no name) |
+| `:PackList` | List installed plugins, revisions, and paths |
+| `:PackClean` | Remove plugins not declared in `lua/plugins/` |
+| `:PackNuke!` | Delete all vim.pack-managed plugins (requires `!`) |
+
+Append `!` to skip the confirmation buffer on restore/upgrade, e.g. `:PackUpgrade! snacks.nvim`.
+
 ## References
 
 - [Migrating from lazy.nvim to vim.pack](https://yeripratama.com/blog/migrating-from-lazynvim-to-vimpack/)

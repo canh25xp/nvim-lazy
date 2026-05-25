@@ -3,7 +3,7 @@ local M = {}
 
 local DEFAULT_PRIORITY = 50
 
-local function resolve_src(src)
+function M.resolve_src(src)
   if type(src) ~= "string" then
     return nil
   end
@@ -13,7 +13,7 @@ local function resolve_src(src)
   return src
 end
 
-local function repo_name(src)
+function M.repo_name(src)
   return (src:match("([^/]+)$") or ""):gsub("%.git$", "")
 end
 
@@ -65,12 +65,12 @@ local function normalize_spec(raw, seen)
     return
   end
 
-  local src = resolve_src(raw[1] or raw.src)
+  local src = M.resolve_src(raw[1] or raw.src)
   if not src then
     return
   end
 
-  local name = raw.name or repo_name(src)
+  local name = raw.name or M.repo_name(src)
   if name == "" then
     return
   end
@@ -257,6 +257,16 @@ function M.setup(opts)
       vim.api.nvim_exec_autocmds("User", { pattern = "VeryLazy" })
     end,
   })
+
+  require("config.pack_commands").setup(M)
+end
+
+function M.spec_names()
+  local names = {}
+  for _, spec in ipairs(M.specs or {}) do
+    names[#names + 1] = spec.name
+  end
+  return names
 end
 
 M.setup()
