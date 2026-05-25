@@ -178,9 +178,6 @@ function M.pack_list()
     local version = lock_versions[name] or ""
     local src = p.spec.src or ""
     lines[#lines + 1] = string.format("%-22s %-7s %-10s %-8s %s", name, active, rev, version, src)
-    if p.path then
-      lines[#lines + 1] = ("  path: %s"):format(p.path)
-    end
   end
 
   lines[#lines + 1] = ""
