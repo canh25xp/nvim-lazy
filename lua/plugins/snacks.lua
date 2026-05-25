@@ -1,4 +1,4 @@
-local ci_selector = require("common.ci_selector")
+local agents = require("common.agents")
 
 local function setup_terminal_exit_keymap(buf)
   local terminal = vim.b[buf].snacks_terminal
@@ -226,7 +226,7 @@ return {
     { "<leader>lf", function() Snacks.terminal({ "lf" }, { win = { style = "lazygit" } }) end, desc = "List Files" },
     { "<leader>ya", function() Snacks.terminal({ "yazi" }, { win = { style = "lazygit" } }) end, desc = "Yazi" },
     { "<leader>bt", function() Snacks.terminal({ "btm" }, { win = { style = "lazygit" } }) end, desc = "Bottom" },
-    { "<leader>ci", function() ci_selector.ci() end, desc = "Code Intelligent" },
+    { "<leader>aa", function() agents.agents() end, desc = "Agent" },
     { "<leader>rr", send_line_to_terminal, desc = "Run current line" },
     { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
     { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },

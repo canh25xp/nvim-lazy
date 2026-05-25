@@ -7,7 +7,7 @@ local function run_with_choice(choice)
   Snacks.terminal({ choice }, { win = { style = "lazygit" } })
 end
 
-function M.ci()
+function M.agents()
   local choice = nil
   if (vim.uv or vim.loop).fs_stat(data_file) then
     local file = io.open(data_file, "r")
