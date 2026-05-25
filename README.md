@@ -20,5 +20,5 @@ nvim --headless +q
 ### Trust `.nvim.lua` file
 
 ```bash
-nvim --headless ".nvim.lua" +'trust' +q
+nvim --headless .nvim.lua +trust +q
 ```
