@@ -1,4 +1,3 @@
--- ~/.local/share/nvim/lazy/lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -18,16 +17,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     { import = "plugins" }, -- Import all plugins in the plugins folder
-    -- { import = "plugins.catppuccin" },
-    -- { import = "plugins.snacks" },
-    -- { import = "plugins.lspconfig" },
-    -- { import = "plugins.mason" },
-    -- { import = "plugins.lazydev" },
-    -- { import = "plugins.treesitter" },
-    -- { import = "plugins.conform" },
-    -- { import = "plugins.lualine" },
-    -- { import = "plugins.persistance" },
-    -- { import = "plugins.gitsigns" },
   },
   lockfile = vim.fn.stdpath("config") .. "/.lazy-lock.json",
   defaults = {
@@ -61,60 +50,5 @@ require("lazy").setup({
         "zipPlugin",
       },
     },
-  },
-  ui = {
-    size = {
-      width = 0.9,
-      height = 0.9,
-    },
-  },
-  custom_keys = {
-    ["<localleader>l"] = {
-      function(plugin)
-        require("lazy.util").float_term({ "lazygit", "log" }, {
-          cwd = plugin.dir,
-        })
-      end,
-      desc = "Open lazygit log",
-    },
-
-    ["<localleader>t"] = {
-      function(plugin)
-        require("lazy.util").float_term(nil, {
-          cwd = plugin.dir,
-        })
-      end,
-      desc = "Open terminal in plugin dir",
-    },
-
-    ["<localleader>o"] = {
-      function(plugin)
-        -- TODO: this worth refactor as a function
-        local app = vim.g.is_windows and "start" or "xdg-open"
-        local url = plugin.url
-        local command = app .. " " .. vim.fn.shellescape(url)
-        vim.fn.jobstart(command, {
-          detach = not vim.g.is_windows,
-          on_exit = function(_, code, _)
-            if code ~= 0 then
-              require("url-open.modules.logger").error("Failed to open " .. url)
-            else
-              require("url-open.modules.logger").info("Opening " .. url)
-            end
-          end,
-        })
-      end,
-      desc = "Open plugins in the explorer",
-    },
-  },
-  dev = {
-    fallback = true,
-    path = "~/projects/lua",
-    -- pattern = {
-    --   "LazyVim",
-    -- },
-  },
-  rocks = {
-    enabled = false,
   },
 })
