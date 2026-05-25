@@ -16,3 +16,9 @@ If you are setting up your configuration on a new machine or in a CI environment
 ```bash
 nvim --headless +q
 ```
+
+### Trust `.nvim.lua` file
+
+```bash
+nvim --headless ".nvim.lua" +'trust' +q
+```
