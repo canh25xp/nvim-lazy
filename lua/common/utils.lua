@@ -67,6 +67,10 @@ function M.delete_other_buffers()
 end
 
 function M.lazy_load()
+  if vim.fn.has("nvim-0.12") == 1 then
+    vim.notify("Plugins are managed by vim.pack (zpack)", vim.log.levels.INFO)
+    return
+  end
   if not vim.g.load_lazy_plugins then
     require("config.lazy")
     vim.g.load_lazy_plugins = true

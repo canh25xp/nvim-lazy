@@ -1,3 +1,13 @@
+-- Disable default rtp plugins (shared by lazy.nvim and vim.pack paths)
+vim.g.loaded_gzip = 1
+vim.g.loaded_matchit = 1
+vim.g.loaded_matchparen = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_tarPlugin = 1
+vim.g.loaded_tohtml = 1
+vim.g.loaded_tutor = 1
+vim.g.loaded_zipPlugin = 1
+
 vim.opt.cmdheight = vim.g.dynamic_cmdheight and 0 or 1
 vim.opt.sessionoptions:append({ "globals", "skiprtp" })
 vim.opt.completeopt = "menu,menuone,noselect"
