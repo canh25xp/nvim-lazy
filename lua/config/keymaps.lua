@@ -37,7 +37,6 @@ map("n", "<leader>e", "<cmd>Lexplore<cr>", { desc = "Netrw Explorer (root)" })
 map("n", "<leader>E", "<cmd>Lexplore %:p:h<cr>", { desc = "Netrw Explorer (cwd)" })
 
 -- Lazy
-map("n", "<leader>ll", utils.lazy_load, { desc = "Load Lazy Plugins" })
 map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- Sessions

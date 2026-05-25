@@ -66,15 +66,6 @@ function M.delete_other_buffers()
   end
 end
 
-function M.lazy_load()
-  if not vim.g.load_lazy_plugins then
-    require("config.lazy")
-    vim.g.load_lazy_plugins = true
-  else
-    vim.notify("Lazy Plugins already Loaded", vim.log.levels.ERROR)
-  end
-end
-
 function M.toggle_theme()
   if vim.g.colors_name == "catppuccin-mocha" then
     vim.cmd.colorscheme("catppuccin-frappe")
