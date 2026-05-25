@@ -46,7 +46,58 @@ local function resolve_version(version)
   return version
 end
 
-local function normalize_spec(raw, seen)
+local function find_spec(name)
+  for _, spec in ipairs(M.specs) do
+    if spec.name == name then
+      return spec
+    end
+  end
+end
+
+--- Enrich an existing stub (e.g. from dependencies = { "user/repo" }) with a full plugin spec.
+local function merge_into_spec(spec, raw)
+  if raw.priority then
+    spec.priority = raw.priority
+  end
+  if raw.opts ~= nil then
+    spec.opts = raw.opts
+  end
+  if raw.config ~= nil then
+    spec.config = raw.config
+  end
+  if raw.init then
+    spec.init = raw.init
+  end
+  if raw.build then
+    spec.build = raw.build
+  end
+  if raw.keys then
+    spec.keys = raw.keys
+  end
+  if raw.main then
+    spec.main = raw.main
+  end
+  local version = resolve_version(raw.version)
+  if version then
+    spec.version = version
+  end
+end
+
+local normalize_spec
+
+local function normalize_deps(raw, seen)
+  local deps = raw.dependencies
+  if type(deps) == "string" then
+    deps = { deps }
+  end
+  if type(deps) == "table" then
+    for _, dep in ipairs(deps) do
+      normalize_spec(dep, seen)
+    end
+  end
+end
+
+normalize_spec = function(raw, seen)
   if type(raw) == "string" then
     raw = { raw }
   end
@@ -76,6 +127,11 @@ local function normalize_spec(raw, seen)
   end
 
   if seen[name] then
+    local existing = find_spec(name)
+    if existing then
+      merge_into_spec(existing, raw)
+    end
+    normalize_deps(raw, seen)
     return
   end
   seen[name] = true
@@ -95,15 +151,7 @@ local function normalize_spec(raw, seen)
 
   table.insert(M.specs, spec)
 
-  local deps = raw.dependencies
-  if type(deps) == "string" then
-    deps = { deps }
-  end
-  if type(deps) == "table" then
-    for _, dep in ipairs(deps) do
-      normalize_spec(dep, seen)
-    end
-  end
+  normalize_deps(raw, seen)
 end
 
 local function load_specs()
