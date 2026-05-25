@@ -18,7 +18,7 @@ require("config.options")
 require("config.keymaps")
 require("config.autocmds")
 if vim.fn.has("nvim-0.12") == 1 then
-  require("config.pack")
+  require("config.zpack")
 else
   require("config.lazy")
 end
