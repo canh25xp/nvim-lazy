@@ -27,6 +27,12 @@ nvim --headless +q
 nvim --headless .nvim.lua +trust +q
 ```
 
+### Get help from cli
+
+```bash
+nvim --headless --noplugin "+help pack.txt" "+%print" +qa!
+```
+
 ## References
 
 - [Migrating from lazy.nvim to vim.pack](https://yeripratama.com/blog/migrating-from-lazynvim-to-vimpack/)
