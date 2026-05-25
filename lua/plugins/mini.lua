@@ -1,6 +1,6 @@
 return {
   "echasnovski/mini.nvim",
-  enabled = false,
+  enabled = true,
   config = function()
     -- Better Around/Inside textobjects
     -- va)  - [V]isually select [A]round [)]paren
