@@ -4,6 +4,7 @@
 
 ```sh
 git clone https://github.com/canh25xp/nvim -b minimal ~/.config/nvim-mini
+export NVIM_APPNAME=nvim-mini
 ```
 
 ## Notes
