@@ -160,10 +160,6 @@ map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 -- map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 -- map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
--- Lazy
-pcall(vim.keymap.del, "n", "<leader>l")
-map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Lazy" })
-map("n", "<leader>le", "<cmd>LazyExtras<cr>", { desc = "Lazy" })
 -- windows
 map("n", "<leader>-", "<C-w>s", { desc = "Split Window Below", remap = true })
 map("n", "<leader>\\", "<C-w>v", { desc = "Split Window Right", remap = true })
