@@ -75,9 +75,8 @@
       "version": ">=0.0.0"
     },
     "vim-tmux-navigator": {
-      "rev": "85b8e5f60c1690cde57dbb66467ce39cd1b63343",
-      "src": "https://github.com/christoomey/vim-tmux-navigator",
-      "version": ">=0.0.0"
+      "rev": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432",
+      "src": "https://github.com/christoomey/vim-tmux-navigator"
     }
   }
 }
