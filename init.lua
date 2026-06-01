@@ -8,6 +8,7 @@ vim.g.is_android = vim.fn.has("android") == 1
 vim.g.is_wsl = vim.fn.has("wsl") == 1
 vim.g.is_mac = vim.fn.has("mac") == 1
 vim.g.path_sep = vim.g.is_windows and ";" or ":"
+vim.g.is_headless = #vim.api.nvim_list_uis() == 0
 
 vim.g.loaded_perl_provider = 0 -- Disable perl provider
 vim.g.loaded_ruby_provider = 0 -- Disable ruby provider
