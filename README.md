@@ -21,6 +21,12 @@ If you are setting up your configuration on a new machine or in a CI environment
 nvim --headless +q
 ```
 
+### To install `Mason` packages and exit
+
+```bash
+nvim --headless +MasonEnsureInstall +q
+```
+
 ### Trust `.nvim.lua` file
 
 ```bash
