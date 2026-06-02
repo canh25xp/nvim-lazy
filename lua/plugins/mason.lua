@@ -1,26 +1,30 @@
 local function MasonEnsureInstall(pkgs)
   local registry = require("mason-registry")
   registry.refresh()
-  local installed_package = registry.get_installed_package_names()
 
-  vim.notify("Checking Mason packages to install...", vim.log.levels.INFO)
-  local installed_count = 0
-  local to_install = {}
-
+  local missing = {}
   for _, pkg_name in ipairs(pkgs) do
     local ok, pkg = pcall(registry.get_package, pkg_name)
-    if ok and not pkg:is_installed() then
-      table.insert(to_install, pkg_name)
-      pkg:install()
-    else
-      installed_count = installed_count + 1
+    if ok and pkg and not pkg:is_installed() then
+      missing[#missing + 1] = pkg_name
     end
   end
 
-  if #to_install > 0 then
-    vim.notify("Installing Mason packages: " .. table.concat(to_install, ", "), vim.log.levels.INFO)
-  else
-    vim.notify("All Mason packages are already installed (" .. #installed_package .. ")", vim.log.levels.INFO)
+  if #missing == 0 then
+    vim.notify("All Mason packages are already installed", vim.log.levels.INFO)
+    return
+  end
+
+  vim.notify("Installing Mason packages: " .. table.concat(missing, ", "), vim.log.levels.INFO)
+
+  -- Headless CLI (+MasonEnsureInstall +q) must block until installs finish.
+  if require("mason-core.platform").is_headless then
+    vim.cmd(("MasonInstall %s"):format(table.concat(missing, " ")))
+    return
+  end
+
+  for _, pkg_name in ipairs(missing) do
+    registry.get_package(pkg_name):install()
   end
 end
 
