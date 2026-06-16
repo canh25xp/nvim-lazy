@@ -24,6 +24,8 @@ if vim.g.is_windows then
   vim.o.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
   vim.o.shellquote = ""
   vim.o.shellxquote = ""
+else
+  vim.o.shell = "bash"
 end
 
 if vim.g.neovide then
